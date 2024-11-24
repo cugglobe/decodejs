@@ -1,4 +1,4 @@
-//11/24/2024, 7:08:35 PM
+//11/24/2024, 7:18:02 PM
 //Project:https://github.com/dream385/decode
 let _0x30587c = true,
   _0x48445f = true;
