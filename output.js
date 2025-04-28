@@ -1,62 +1,116 @@
-//11/24/2024, 7:18:02 PM
+//4/28/2025, 6:01:20 PM
 //Project:https://github.com/dream385/decode
-let _0x30587c = true,
-  _0x48445f = true;
-_0x48445f = false;
-_0x30587c = false;
-let _0x22ef36 = Object.assign(baseConfig, {
-  "setting": {
-    "tjjl": "推荐购买脚本，返佣40%",
-    "version": {
-      "version": "202409182241",
-      "body": "<div style=\"padding:10px;\">第一版本</div>"
+var encode_version = "jsjiami.com.v5";
+let _0x5b2bc5 = "http://doc.zhanyc.cn/pages/gdgb/";
+let _0x1f5d4f = true;
+let _0xe0fc32 = true;
+_0xe0fc32 = false;
+_0x1f5d4f = false;
+let _0x36476b = Object.assign(baseConfig, {
+  setting: {
+    tjjl: "推荐购买脚本，返佣40%",
+    version: {
+      version: "202412070205",
+      body: "<div style=\"padding:10px;\">第一版本</div>"
     }
   },
-  "pageData": {
-    "url": "",
-    "isFinishVideo": false,
-    "video": {
-      "index": null
+  pageData: {
+    url: "",
+    isFinishVideo: false,
+    video: {
+      index: null
     },
-    "valueChangeIndex": {
-      "list": null,
-      "courseFinish": null,
-      "videoPageCheck": null
+    valueChangeIndex: {
+      list: null,
+      courseFinish: null,
+      videoPageCheck: null
     }
   },
-  async "init"() {
+  async addMenu() {
+    await _0x36476b.waitOf(_0x17e994 => $("body:visible").length > 0);
+    if ($("#zfkLeftMenuContainer").length > 0) {
+      return;
+    }
+    GM_addStyle("#zfkLeftMenuContainer{z-index:9999;position:fixed;left:0;top:40%;color:#fff;box-shadow:0 0 10px #00ffcc,0 0 20px #00ffcc,0 0 30px #00ffcc;animation:glowAnimation 3s infinite alternate;}@keyframes glowAnimation{0%{box-shadow:0 0 10px #00ffcc,0 0 20px #00ffcc,0 0 30px #00ffcc;}20%{box-shadow:0 0 15px #ff66cc,0 0 25px #ff66cc,0 0 35px #ff66cc;}40%{box-shadow:0 0 10px #ffcc33,0 0 20px #ffcc33,0 0 30px #ffcc33;}60%{box-shadow:0 0 15px #66ff66,0 0 25px #66ff66,0 0 35px #66ff66;}80%{box-shadow:0 0 10px #3399ff,0 0 20px #3399ff,0 0 30px #3399ff;}100%{box-shadow:0 0 10px #fffb00,0 0 20px #fffb00,0 0 30px #fffb00;}}#zfkLeftMenuContainer .zfkLeftMenuStep{position:absolute;background:#3498db;width:max-content;top:-35px;display:block;padding:6px}#zfkLeftMenuContainer .zfkLeftMenu{background:rgba(0,0,0,0.4);border-radius:0 4px 4px 0;padding:6px}#zfkLeftMenuContainer .zfkLeftMenu:hover .zfkLeftMenuBtn-titile{width:auto}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtn-titile{cursor:pointer;word-wrap:break-word;width:1em;display:inline-block}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl{display:none;margin:0 -6px;box-sizing:border-box}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl li{list-style:none;color:#fff !important;cursor:pointer;padding:6px}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl li:hover{background:#000}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl li::before{content:\"+ \"}#zfkIp51Config{padding:10px}#zfkLeftMenuContainer *{font-size:14px}");
+    $("<div id=\"zfkLeftMenuContainer\">\n        <div class=\"zfkLeftMenu\">\n          <span class=\"zfkLeftMenuBtn-titile\">菜单</span>\n          <ul class=\"zfkLeftMenuBtnUl\">\n          </ul>\n    \n        </div>\n        </div>").appendTo("body");
+    $(".zfkLeftMenu").hover(() => {
+      $(".zfkLeftMenuBtnUl").show();
+    }, () => {
+      $(".zfkLeftMenuBtnUl").hide();
+    });
+  },
+  async init() {
     console.log("%c init", "background:rgb(255,0,0);color:#fff");
-    unsafeWindow.window === unsafeWindow.top && _0x22ef36.registerMenuCommandTemplate();
-    let _0x4cb9a7 = unsafeWindow.alert;
-    unsafeWindow.alert = function (_0xb04de2) {
-      _0xb04de2 == "选课成功!" ? layer.alert(_0xb04de2) : _0x4cb9a7(_0xb04de2);
+    if (unsafeWindow.window === unsafeWindow.top) {
+      _0x36476b.addMenu();
+      _0x36476b.registerMenuCommandTemplate();
+    }
+    let _0xc5b7f1 = unsafeWindow.alert;
+    unsafeWindow.alert = function (_0x5a5cec) {
+      if (_0x5a5cec == "选课成功!") {
+        layer.alert(_0x5a5cec);
+      } else {
+        _0xc5b7f1(_0x5a5cec);
+      }
     };
     this.addStyle();
     this.setPageData();
     if (location.href.indexOf("user/login?yh=") != -1) {
       console.log("%c user/login?yh", "background:rgb(255,0,0);color:#fff");
-      _0x22ef36.page_yhwelcome();
+      _0x36476b.page_yhwelcome();
       return;
     } else {
       if (location.href.indexOf("loginSuccess.html?yh=") != -1) {
         console.log("%c loginSuccess.html?yh", "background:rgb(255,0,0);color:#fff");
-        _0x22ef36.page_yhwelcome2();
+        _0x36476b.page_yhwelcome2();
       }
     }
-    let _0x52ea06 = await _0x22ef36.checkVersion();
-    if (_0x52ea06) _0x22ef36.begin();
+    let _0x51445b = await _0x36476b.checkVersion();
+    if (_0x51445b) {
+      _0x36476b.begin();
+    }
   },
-  async "begin"() {
+  async begin() {
     console.log("%c begin", "background:rgb(255,0,0);color:#fff");
-    if (_0x22ef36.matchUrl("/LearningCourse.aspx")) await _0x22ef36.setUserName_http(), _0x22ef36.page_list();else {
-      if (_0x22ef36.matchUrl("/newgdceportal/study/StudyCenter.aspx")) await _0x22ef36.setUserName_http();else {
-        if (_0x22ef36.matchUrl("gdceportal/Study/StudyCenter.aspx")) await _0x22ef36.setUserName_http();else {
-          if (location.href.includes("/play_pc/playdo_pc.html")) _0x22ef36.page_videoTop();else {
-            if (_0x22ef36.matchUrl("/playmp4_pc.html") || _0x22ef36.matchUrl("/CourseWare")) {
-              _0x22ef36.page_video();
+    let _0x17e3c3 = location.href;
+    setInterval(async () => {
+      if (_0x17e3c3 != location.href) {
+        _0x17e3c3 = location.href;
+        _0x36476b.runByUrl(location.href);
+      }
+    }, 500);
+    _0x36476b.runByUrl(location.href);
+  },
+  async runByUrl(_0x1ada1d) {
+    if (_0x36476b.matchUrl("/LearningCourse.aspx")) {
+      await _0x36476b.setUserName_http();
+      _0x36476b.page_list();
+    } else {
+      if (_0x36476b.matchUrl("/newgdceportal/study/StudyCenter.aspx")) {
+        _0x36476b.addBsTips();
+        await _0x36476b.setUserName_http();
+      } else {
+        if (_0x36476b.matchUrl("gdceportal/Study/StudyCenter.aspx")) {
+          _0x36476b.addBsTips();
+          await _0x36476b.setUserName_http();
+        } else {
+          if (location.href.includes("/play_pc/playdo_pc.html")) {
+            _0x36476b.page_videoTop();
+          } else {
+            if (_0x36476b.matchUrl("/playmp4_pc.html") || _0x36476b.matchUrl("/CourseWare")) {
+              _0x36476b.page_video();
             } else {
-              if (location.href.includes("/Study/ReqCourse.aspx?")) _0x22ef36.page_ReqCourse();else {
-                if (location.href.includes("/Study/CourseDetail.aspx?")) _0x22ef36.page_CourseDetail();else location.href.includes("/workshopindex/mergeClass") && (await _0x22ef36.setUserName_http(), _0x22ef36.page_mergeClass(false));
+              if (location.href.includes("/Study/ReqCourse.aspx?")) {
+                _0x36476b.page_ReqCourse();
+              } else {
+                if (location.href.includes("/Study/CourseDetail.aspx?")) {
+                  _0x36476b.page_CourseDetail();
+                } else {
+                  if (location.href.includes("/workshopindex/mergeClass")) {
+                    await _0x36476b.setUserName_http();
+                    _0x36476b.page_mergeClass(false);
+                  }
+                }
               }
             }
           }
@@ -64,1209 +118,1513 @@ let _0x22ef36 = Object.assign(baseConfig, {
       }
     }
   },
-  async "page_mergeClass"(_0x455d3a = true) {
-    console.log("%c page_CourseDetail", "background:rgb(255,0,0);color:#fff");
-    await _0x22ef36.gmAuthDownScore("3353432c32fe424a8a1e1a395cc01171");
-    _0x22ef36.closeWaitConfrimWin();
-    await _0x22ef36.waitOf(_0x120603 => $(".item_box").length > 0);
-    await _0x22ef36.waitTimeout(300);
-    if (_0x455d3a == false) {
-      let _0x254e32 = _0x22ef36.getGMData("autoRunListTime", 0);
-      if (_0x22ef36.now() - _0x254e32 > 20 * 1000) return;
-      let _0x200cb8 = $("[role=\"tablist\"] [role=\"tab\"]").index($("[role=\"tablist\"] [role=\"tab\"].is-active")),
-        _0x5ad987 = _0x22ef36.getGMData("tabIndex", 0);
-      _0x200cb8 != _0x5ad987 && ($("[role=\"tablist\"] [role=\"tab\"]").eq(_0x5ad987).click(), await _0x22ef36.waitTimeout(1000), await _0x22ef36.waitOf(_0x3d3682 => $(".item_box:visible").length > 0), await _0x22ef36.waitTimeout(1000));
-    }
-    if (_0x455d3a) {
-      if ($(".item_box:visible").length == 0) {
-        _0x22ef36.tipsMsg("请切换到需要学课的课程列表后再点击");
-        return;
-      }
-      let _0x22416d = $("[role=\"tablist\"] [role=\"tab\"]").index($("[role=\"tablist\"] [role=\"tab\"].is-active"));
-      _0x22ef36.setGMData("tabIndex", _0x22416d);
-    }
-    let _0x464346 = null;
-    $(".item_box:visible").each((_0x23eb45, _0x3328e7) => {
-      let _0x3ea0c0 = Number($(_0x3328e7).find("[role=\"progressbar\"]").attr("aria-valuenow"));
-      if (_0x3ea0c0 < 99) return _0x464346 = $(_0x3328e7), false;
-    });
-    if (_0x464346 == null) {
-      _0x22ef36.alertMsg("学习完成");
-      return;
-    }
-    _0x22ef36.setGMData("listUrl", location.href);
-    _0x22ef36.confirmRun("3秒后执行下一步", 3000).then(async _0x19f69c => {
-      _0x22ef36.setGMData("videoType", "2");
-      _0x464346.find(".item_title").click();
-      await _0x22ef36.openLjTips();
+  async addBsTips() {
+    await _0x36476b.waitTimeout(500);
+    $("body").append("<div style=\"position:fixed;top:80px;right:0;background:#fff;border:1px solid #00f;padding:4px;width:300px;color:red;\" class=\"zfk-tips-container\"><span style=\"position:absolute;top: -14px;color:red;font-weight:700;font-size:1.5em;right: -3px;cursor: pointer\" class=\"zfk-close-tips\">×</span> 脚本提示：本网站不可以倍速播放、不可以拖进度条，都不记录学时！如果重复打开视频页面后又返回列表页面，一直循环，请看脚本使用说明文档解决</div>");
+    $(".zfk-close-tips").click(function () {
+      $(".zfk-tips-container").remove();
     });
   },
-  async "page_CourseDetail"() {
+  async page_mergeClass(_0x2a7bc6 = true) {
     console.log("%c page_CourseDetail", "background:rgb(255,0,0);color:#fff");
-    await _0x22ef36.waitOf(_0x5a9546 => $("input[value=\"继续选课\"]").length > 0, 300);
+    await _0x36476b.gmAuthDownScore("3353432c32fe424a8a1e1a395cc01171");
+    _0x36476b.closeWaitConfrimWin();
+    await _0x36476b.waitOf(_0xe93e22 => $(".item_box").length > 0);
+    _0x36476b.addBsTips();
+    await _0x36476b.waitTimeout(300);
+    if (_0x2a7bc6 == false) {
+      let _0x457c4e = $("[role=\"tablist\"] [role=\"tab\"]").index($("[role=\"tablist\"] [role=\"tab\"].is-active"));
+      let _0x2616db = _0x36476b.getGMData("tabIndex", 0);
+      if (_0x457c4e != _0x2616db) {
+        $("[role=\"tablist\"] [role=\"tab\"]").eq(_0x2616db).click();
+        await _0x36476b.waitTimeout(1000);
+        await _0x36476b.waitOf(_0x47d29b => $(".item_box:visible").length > 0);
+        await _0x36476b.waitTimeout(1000);
+      }
+    }
+    if (_0x2a7bc6) {
+      if ($(".item_box:visible").length == 0) {
+        _0x36476b.tipsMsg("请切换到需要学课的课程列表后再点击");
+        return;
+      }
+      let _0x456b4c = $("[role=\"tablist\"] [role=\"tab\"]").index($("[role=\"tablist\"] [role=\"tab\"].is-active"));
+      _0x36476b.setGMData("tabIndex", _0x456b4c);
+    }
+    let _0x3714e8 = null;
+    $(".item_box:visible").each((_0x1ff2ba, _0x272c70) => {
+      let _0x239f87 = Number($(_0x272c70).find("[role=\"progressbar\"]").attr("aria-valuenow"));
+      if (_0x239f87 < 99) {
+        _0x3714e8 = $(_0x272c70);
+        return false;
+      }
+    });
+    if (_0x3714e8 == null) {
+      _0x36476b.alertMsg("学习完成");
+      return;
+    }
+    _0x36476b.setGMData("listUrl", location.href);
+    _0x36476b.confirmRun("3秒后执行下一步", 3000).then(async _0xc66349 => {
+      _0x36476b.setGMData("videoType", "2");
+      _0x3714e8.find(".item_title").click();
+      await _0x36476b.openLjTips();
+    });
+  },
+  async page_CourseDetail() {
+    console.log("%c page_CourseDetail", "background:rgb(255,0,0);color:#fff");
+    await _0x36476b.waitOf(_0x12d426 => $("input[value=\"继续选课\"]").length > 0, 300);
     $.ajax({
-      "url": "/gdceportal/Study/CourseDetail.aspx?id=" + _0x22ef36.parseQueryString(location.href).id,
-      "type": "POST",
-      "contentType": "application/x-www-form-urlencoded",
-      "data": {
-        "__VIEWSTATE": $("#__VIEWSTATE").val(),
-        "__VIEWSTATEGENERATOR": $("#__VIEWSTATEGENERATOR").val(),
-        "__EVENTVALIDATION": $("#__EVENTVALIDATION").val(),
-        "btnConfirm2": $("#btnConfirm2").val()
+      url: "/gdceportal/Study/CourseDetail.aspx?id=" + _0x36476b.parseQueryString(location.href).id,
+      type: "POST",
+      contentType: "application/x-www-form-urlencoded",
+      data: {
+        __VIEWSTATE: $("#__VIEWSTATE").val(),
+        __VIEWSTATEGENERATOR: $("#__VIEWSTATEGENERATOR").val(),
+        __EVENTVALIDATION: $("#__EVENTVALIDATION").val(),
+        btnConfirm2: $("#btnConfirm2").val()
       },
-      "success": _0x2d0ccc => {
-        _0x22ef36.tipsMsg("选课完成");
-        _0x22ef36.setGMData("xkFinish", _0x22ef36.now());
+      success: _0x300ed0 => {
+        _0x36476b.tipsMsg("选课完成");
+        _0x36476b.setGMData("xkFinish", _0x36476b.now());
         window.close();
       }
     });
   },
-  async "page_ReqCourse"() {
+  async page_ReqCourse() {
     console.log("%c page_ReqCourse", "background:rgb(255,0,0);color:#fff");
-    await _0x22ef36.waitOf(_0x37a878 => $(".course-list-title").length > 0, 300);
-    GM_addValueChangeListener("xkFinish", function (_0x4c9424, _0x1b12aa, _0x58a51e, _0x3fc45f) {
+    await _0x36476b.waitOf(_0x541ebc => $(".course-list-title").length > 0, 300);
+    GM_addValueChangeListener("xkFinish", function (_0x5ac1fb, _0x4e96a4, _0x17bbcc, _0x156daf) {
       location.reload();
     });
-    let _0x1e7bde = null;
-    $(".course-list-title").each((_0x3176ef, _0x128dcd) => {
-      if ($(_0x128dcd).parents("tr:first").text().includes("进入选课")) return _0x1e7bde = $(_0x128dcd).parents("tr:first"), false;
+    let _0x402502 = null;
+    $(".course-list-title").each((_0x125230, _0x407aff) => {
+      if ($(_0x407aff).parents("tr:first").text().includes("进入选课")) {
+        _0x402502 = $(_0x407aff).parents("tr:first");
+        return false;
+      }
     });
-    if (_0x1e7bde != null) {
-      _0x22ef36.confirmRun("1秒后打开选课", 1000).then(_0x4de13a => {
-        _0x1e7bde.find("a:last")[0].click();
+    if (_0x402502 != null) {
+      _0x36476b.confirmRun("2秒后打开选课", 2000).then(_0xccc67a => {
+        _0x402502.find("a:last")[0].click();
       });
     } else {
-      let _0x246135 = Number($("#lblCurrentPage").text()),
-        _0x591a8e = Number($("#lblPage").text());
-      _0x246135 < _0x591a8e ? _0x22ef36.confirmRun("3秒后翻页", 1000).then(_0x20d1a9 => {
-        $("#btnNextPage").click();
-      }) : _0x22ef36.tipsMsg("本目录已全部选课完成");
+      let _0x591794 = Number($("#lblCurrentPage").text());
+      let _0x5bca5b = Number($("#lblPage").text());
+      if (_0x591794 < _0x5bca5b) {
+        _0x36476b.confirmRun("3秒后翻页", 1000).then(_0x24ba85 => {
+          $("#btnNextPage").click();
+        });
+      } else {
+        _0x36476b.tipsMsg("本目录已全部选课完成");
+      }
     }
   },
-  async "checkVersion"() {
-    return new Promise(_0x5a8f6e => {
-      if (_0x48445f) {
-        _0x22ef36.delGMData("code");
+  async checkVersion() {
+    return new Promise(_0x1f3711 => {
+      if (_0xe0fc32) {
+        _0x36476b.delGMData("code");
       }
-      if (!top === window || _0x48445f) return _0x5a8f6e(true);
-      _0x22ef36.gmPost("/yh/base/checkVersion", {
-        "id": baseConfig.project.id,
-        "v1": baseConfig.project.version,
-        "v2": _0x22ef36.getGMData("version", "")
-      }).then(_0x2de12c => {
-        if (_0x2de12c.message == "更新脚本") layer.alert(_0x2de12c.result.msg, function () {
-          top.open(_0x2de12c.result.url);
-        });else _0x2de12c.message == "更新内容" && (_0x22ef36.delGMData("code"), location.href = location.href);
-        return _0x5a8f6e(true);
-      }, _0x256547 => {
-        console.log(_0x256547);
+      if (!top === window || _0xe0fc32) {
+        return _0x1f3711(true);
+      }
+      _0x36476b.gmPost("/yh/base/checkVersion", {
+        id: baseConfig.project.id,
+        v1: baseConfig.project.version,
+        v2: _0x36476b.getGMData("version", "")
+      }).then(_0x7b185f => {
+        if (_0x7b185f.message == "更新脚本") {
+          layer.alert(_0x7b185f.result.msg, function () {
+            top.open(_0x7b185f.result.url);
+          });
+        } else {
+          if (_0x7b185f.message == "更新内容") {
+            _0x36476b.delGMData("code");
+            location.href = location.href;
+          }
+        }
+        return _0x1f3711(true);
+      }, _0x3492b9 => {
+        console.log(_0x3492b9);
       });
     });
   },
-  async "page_videoTop"() {
+  async page_videoTop() {
     console.log("%c page_videoTop", "background:rgb(0,0,0);color:#fff");
-    _0x22ef36.closeWaitConfrimWin();
-    let _0x282bf8 = true;
-    GM_addValueChangeListener("refreshListCallback", function (_0x15aa3f, _0x3ec8b1, _0x38513c, _0x4cbe11) {
-      _0x282bf8 = false;
+    _0x36476b.closeWaitConfrimWin();
+    _0x36476b.setGMData("checkVideoPageCallback", _0x36476b.now());
+    let _0x3719e2 = true;
+    GM_addValueChangeListener("refreshListCallback", function (_0xe13609, _0x154e0f, _0x3cd07a, _0x5e9ef6) {
+      _0x3719e2 = false;
     });
-    GM_addValueChangeListener("openListPage", async function (_0x53f85b, _0x5edcee, _0x2137dc, _0x2fcc17) {
-      _0x22ef36.confirmRun().then(_0x5d0dfa => {
-        _0x22ef36.setGMData("refreshList", _0x22ef36.now());
+    GM_addValueChangeListener("openListPage", async function (_0x4d5115, _0x1289e3, _0x4b8f34, _0x3c879f) {
+      _0x36476b.confirmRun().then(_0x1de894 => {
+        _0x36476b.setGMData("refreshList", _0x36476b.now());
         setTimeout(async () => {
-          if (_0x282bf8) {
-            window.open(_0x22ef36.getGMData("listUrl", "/"));
-            _0x22ef36.setGMData("autoRunListTime", _0x22ef36.now());
-            _0x22ef36.openLjTips(true, true, 3000);
+          if (_0x3719e2) {
+            let _0x21806f = _0x36476b.getGMData("listUrl", null);
+            if (_0x21806f == null) {
+              layer.confirm("脚本自动换课失败，原因：不知道课程的列表页面地址！请按【使用说明】从列表页面让脚本自动打开视频页面，请勿手动打开视频页面！", {
+                icon: 3,
+                title: "运行失败！",
+                btn: ["查看使用说明", "取消"]
+              }, function (_0x5e78eb) {
+                window.open("https://doc.zhanyc.cn/pages/gdgb/#%E8%84%9A%E6%9C%AC%E5%90%AF%E5%8A%A8");
+                layer.close(_0x5e78eb);
+              }, function () {});
+              return;
+            }
+            _0x36476b.openLjTips(true, true, 3000);
+            _0x36476b.setGMData("autoRunListTime", _0x36476b.now());
+            window.open(_0x21806f);
             return;
           }
           unsafeWindow.closePage();
         }, 1000);
       });
     });
-    GM_addValueChangeListener("closeVideo", function (_0x4afcc0, _0x2cd533, _0xc209f8, _0xa1b37) {
-      _0x22ef36.setGMData("refreshList", _0x22ef36.now());
+    GM_addValueChangeListener("closeVideo", function (_0x308976, _0x16bbfe, _0x1971ec, _0x3184c4) {
+      _0x36476b.setGMData("refreshList", _0x36476b.now());
       unsafeWindow.closePage();
     });
-    GM_addValueChangeListener("updateTitle", function (_0x44948f, _0x38a04c, _0x33b6c0, _0x40d503) {
-      $("title").text(_0x33b6c0);
+    GM_addValueChangeListener("updateTitle", function (_0x199df4, _0x225b8f, _0x434d78, _0x4dd5f2) {
+      $("title").text(_0x434d78);
     });
-    let _0x5d154d = _0x22ef36.getGMData("finishVideoID", null);
-    await _0x22ef36.waitOf(_0x44d7f9 => unsafeWindow.courseId);
-    _0x5d154d == courseId && _0x22ef36.confirmRun("检测到当前课程实际已经完成，5秒后结束观看", 5000).then(_0x4630ed => {
-      _0x22ef36.setGMData("refreshList", _0x22ef36.now());
-      unsafeWindow.closePage();
+    let _0x59b058 = _0x36476b.getGMData("finishVideoID", null);
+    await _0x36476b.waitOf(_0x49c475 => unsafeWindow.courseId);
+    if (_0x59b058 == courseId) {
+      _0x36476b.confirmRun("检测到当前课程实际已经完成，5秒后结束观看", 5000).then(_0x13b273 => {
+        _0x36476b.setGMData("refreshList", _0x36476b.now());
+        unsafeWindow.closePage();
+      });
+    }
+  },
+  page_StudyCenter2() {
+    _0x36476b.waitOf(_0x4210f5 => $(".text_userName>span").text().trim() != "").then(_0xacb26d => {
+      let _0xea03f2 = $(".text_userName>span").text().trim();
+      _0x36476b.setGMData("username", _0xea03f2);
     });
   },
-  "page_StudyCenter2"() {
-    _0x22ef36.waitOf(_0x4bab7c => $(".text_userName>span").text().trim() != "").then(_0x5754fd => {
-      let _0x39df79 = $(".text_userName>span").text().trim();
-      _0x22ef36.setGMData("username", _0x39df79);
+  page_StudyCenter() {
+    _0x36476b.waitOf(_0x5bada5 => $(".userName-item").text().trim() != "").then(_0x4f2435 => {
+      let _0x591fab = $(".userName-item").text().trim();
+      _0x36476b.setGMData("username", _0x591fab);
     });
   },
-  "page_StudyCenter"() {
-    _0x22ef36.waitOf(_0x2b8df5 => $(".userName-item").text().trim() != "").then(_0xa1fd1f => {
-      let _0x5a9bf8 = $(".userName-item").text().trim();
-      _0x22ef36.setGMData("username", _0x5a9bf8);
-    });
-  },
-  async "setUserName_http"() {
-    return new Promise(async (_0x22e317, _0x54f494) => {
-      $.get("/gdceportal/study/BaseInfo.aspx", _0x1809ec => {
-        let _0x50b4ac = _0x1809ec,
-          _0x26d698 = $("<html>" + _0x50b4ac + "</html>").find("#lblShowName").text().trim();
-        if (!_0x26d698) {
-          return _0x22ef36.alertMsg("您的学习网站账号掉线了，请重新登录"), _0x54f494();
+  async setUserName_http() {
+    return new Promise(async (_0x5d2c67, _0x3ec1bf) => {
+      $.get("/gdceportal/study/BaseInfo.aspx", _0x5f0162 => {
+        let _0x382b5a = _0x5f0162;
+        let _0x238e43 = $("<html>" + _0x382b5a + "</html>").find("#lblShowName").text().trim();
+        if (!_0x238e43) {
+          _0x36476b.alertMsg("您的学习网站账号掉线了，请重新登录");
+          return _0x3ec1bf();
         }
-        return _0x22ef36.setGMData("username", _0x26d698), _0x22e317();
+        _0x36476b.setGMData("username", _0x238e43);
+        return _0x5d2c67();
       });
     });
   },
-  "page_videoRun"() {
-    GM_removeValueChangeListener(_0x22ef36.pageData.valueChangeIndex.videoPageCheck);
-    _0x22ef36.pageData.valueChangeIndex.videoPageCheck = GM_addValueChangeListener("videoPageCheck", function (_0x1c975d, _0x56ba2c, _0x3d0601, _0x3ed955) {
+  page_videoRun() {
+    GM_removeValueChangeListener(_0x36476b.pageData.valueChangeIndex.videoPageCheck);
+    _0x36476b.pageData.valueChangeIndex.videoPageCheck = GM_addValueChangeListener("videoPageCheck", function (_0xed45c1, _0x469e6f, _0x3c6291, _0x4b49d0) {
       console.log("videoPageCheck", arguments);
-      _0x22ef36.setGMData("videoPageIsRun", new Date().getTime());
+      _0x36476b.setGMData("videoPageIsRun", new Date().getTime());
     });
   },
-  "isDZKFMode"() {
-    let _0x4b946d = typeof loadFun == "function" && loadFun.toString().includes("var data = res.response;");
-    if (!_0x4b946d) _0x4b946d = typeof isDZKF == "boolean" && !!isDZKF;
-    return _0x4b946d;
+  isDZKFMode() {
+    let _0x10a32a = typeof loadFun == "function" && loadFun.toString().includes("var data = res.response;");
+    if (!_0x10a32a) {
+      _0x10a32a = typeof isDZKF == "boolean" && !!isDZKF;
+    }
+    return _0x10a32a;
   },
-  async "page_video"() {
-    _0x22ef36.closeWaitConfrimWin();
-    await _0x22ef36.gmAuthDownScore("3353432c32fe424a8a1e1a395cc01171");
+  async page_video() {
+    _0x36476b.closeWaitConfrimWin();
+    await _0x36476b.gmAuthDownScore("3353432c32fe424a8a1e1a395cc01171");
     console.log("%c page_video", "background:rgb(0,0,0);color:#fff");
-    let _0x26b933 = 2;
-    _0x22ef36.closeWaitConfrimWin();
-    if (_0x22ef36.pageData.video.index != null) {
+    let _0xa4191a = 2;
+    _0x36476b.closeWaitConfrimWin();
+    if (_0x36476b.pageData.video.index != null) {
       return;
     }
-    let _0x23a472 = _0x22ef36.getConfig();
-    _0x22ef36.pageData.video.index = setInterval(async () => {
+    _0x36476b.pageData.video.index = setInterval(async () => {
       try {
-        if (_0x22ef36.pageData.waitTime > 0) {
-          _0x22ef36.pageData.waitTime -= _0x26b933;
+        if (_0x36476b.pageData.waitTime > 0) {
+          _0x36476b.pageData.waitTime -= _0xa4191a;
           return;
         }
-        if (!_0x22ef36.getVideo()) {
+        if (!_0x36476b.getVideo()) {
           console.log("%c zfk no video", "background:rgb(0,0,0);color:#fff");
           return;
         }
-        _0x22ef36.getVideo().volume = 0;
+        _0x36476b.getVideo().volume = 0;
         try {
-          let _0x1f5bbc = "进度：" + _0x22ef36.getCurTime().toFixed(0) + "/" + _0x22ef36.getTotalTime().toFixed(0);
-          _0x22ef36.setGMData("updateTitle", _0x1f5bbc);
-        } catch (_0x14a26f) {}
+          let _0x47358a = "进度：" + _0x36476b.getCurTime().toFixed(0) + "/" + _0x36476b.getTotalTime().toFixed(0);
+          _0x36476b.setGMData("updateTitle", _0x47358a);
+        } catch (_0x47574a) {}
         console.log("%c video run", "background:rgb(255,0,0);color:#fff");
-        let _0x2fb659 = _0x22ef36.getElByText(".layui-layer-content p", "您好，本平台要求实时在线学习，点击按钮，继续学习课程。");
-        _0x2fb659 != null && _0x2fb659.parents(".layui-layer").find(".layui-layer-btn0")[0].click();
-        let _0x48525b = await _0x22ef36.isPlayFinish();
-        if (_0x48525b) {
-          _0x22ef36.pageData.waitTime = 15;
+        let _0x15563d = _0x36476b.getElByText(".layui-layer-content p", "您好，本平台要求实时在线学习，点击按钮，继续学习课程。");
+        if (_0x15563d != null) {
+          _0x15563d.parents(".layui-layer").find(".layui-layer-btn0")[0].click();
+        }
+        let _0x477219 = await _0x36476b.isPlayFinish();
+        if (_0x477219) {
+          _0x36476b.pageData.waitTime = 15;
           layer.msg("视频即将结束，等待下一步操作", {
-            "time": 10 * 1000
+            time: 10000
           });
-          _0x22ef36.nextVideo();
-          clearInterval(_0x22ef36.pageData.video.index);
-          _0x22ef36.pageData.video.index = null;
+          _0x36476b.nextVideo();
+          clearInterval(_0x36476b.pageData.video.index);
+          _0x36476b.pageData.video.index = null;
           return;
         }
-        let _0x21b001 = await _0x22ef36.videoIsPlay();
-        if (!_0x21b001) {
-          !_0x48525b && _0x22ef36.play();
+        let _0x310e71 = await _0x36476b.videoIsPlay();
+        if (!_0x310e71) {
+          if (!_0x477219) {
+            _0x36476b.play();
+          }
         }
-      } catch (_0x15bbd2) {
-        console.error("视频页面定时器出错", _0x15bbd2);
+      } catch (_0x47f51d) {
+        console.error("视频页面定时器出错", _0x47f51d);
       }
-    }, _0x26b933 * 1000);
+    }, _0xa4191a * 1000);
   },
-  "isPlayFinish"() {
+  isPlayFinish() {
     try {
-      return _0x22ef36.getTotalTime() > 0 && _0x22ef36.getCurTime() + 5 >= _0x22ef36.getTotalTime();
-    } catch (_0x134ab7) {
+      return _0x36476b.getTotalTime() > 0 && _0x36476b.getCurTime() + 5 >= _0x36476b.getTotalTime();
+    } catch (_0x380318) {
       return false;
     }
   },
-  "getCurTime"() {
-    let _0xd18509 = 0;
+  getCurTime() {
+    let _0x464e6a = 0;
     try {
-      _0xd18509 = _0x22ef36.getVideo().currentTime;
-    } catch (_0x53cf04) {
-      console.error(_0x53cf04);
+      _0x464e6a = _0x36476b.getVideo().currentTime;
+    } catch (_0x5253c5) {
+      console.error(_0x5253c5);
     }
-    return _0xd18509;
+    return _0x464e6a;
   },
-  "getTotalTime"() {
-    let _0x37841c = 0;
+  getTotalTime() {
+    let _0x18c120 = 0;
     try {
-      _0x37841c = _0x22ef36.getVideo().duration;
-    } catch (_0x39d46e) {
-      console.error(_0x39d46e);
+      _0x18c120 = _0x36476b.getVideo().duration;
+    } catch (_0x45c41d) {
+      console.error(_0x45c41d);
     }
-    return _0x37841c;
+    return _0x18c120;
   },
-  async "videoIsPlay"() {
-    return new Promise(_0x2d1860 => {
+  async videoIsPlay() {
+    return new Promise(_0x1e4124 => {
       try {
-        let _0x23cd2f = $("video")[0].currentTime;
+        let _0x1d1fc7 = $("video")[0].currentTime;
         setTimeout(() => {
-          let _0xef522b = $("video")[0].currentTime,
-            _0x56fedc = _0xef522b > _0x23cd2f;
-          if (_0x56fedc) setTimeout(() => {
-            let _0x403a32 = $("video")[0].currentTime,
-              _0x4b6f06 = _0x403a32 > _0xef522b;
-            _0x2d1860(_0x4b6f06);
-          }, 100);else return _0x2d1860(false);
+          let _0xafa99d = $("video")[0].currentTime;
+          let _0x47762d = _0xafa99d > _0x1d1fc7;
+          if (_0x47762d) {
+            setTimeout(() => {
+              let _0x58abc4 = $("video")[0].currentTime;
+              let _0x2b9558 = _0x58abc4 > _0xafa99d;
+              _0x1e4124(_0x2b9558);
+            }, 100);
+          } else {
+            return _0x1e4124(false);
+          }
         }, 100);
-      } catch (_0x5df60c) {
-        _0x2d1860(false);
+      } catch (_0x40dc46) {
+        _0x1e4124(false);
       }
     });
   },
-  "nextVideo"(_0x2b7424 = 10) {
+  nextVideo(_0x5ec183 = 10) {
     layer.msg("视频即将结束，等待下一步操作", {
-      "time": 10 * 1000
+      time: 10000
     });
     setTimeout(() => {
-      _0x22ef36.setGMData("openListPage", _0x22ef36.now());
-    }, _0x2b7424 * 1000);
+      _0x36476b.setGMData("openListPage", _0x36476b.now());
+    }, _0x5ec183 * 1000);
   },
-  "page_video_old"() {
+  page_video_old() {
     console.log("%c page_video", "background:rgb(255,0,0);color:#fff");
-    _0x22ef36.closeWaitConfrimWin();
-    _0x22ef36.checkVideoPlay();
-    _0x22ef36.waitOf(_0x3459cf => {
+    _0x36476b.closeWaitConfrimWin();
+    _0x36476b.checkVideoPlay();
+    _0x36476b.waitOf(_0xc51ed => {
       if (!!unsafeWindow.myPlayer && !!unsafeWindow.myPlayer.volume) {
-        return unsafeWindow.myPlayer.volume(0), console.log("静音完成"), true;
+        unsafeWindow.myPlayer.volume(0);
+        console.log("静音完成");
+        return true;
       }
       return false;
     });
-    let _0x555517 = -1;
-    _0x22ef36.waitOf(_0x286359 => {
+    let _0x4571fd = -1;
+    _0x36476b.waitOf(_0x24a797 => {
       if (!!unsafeWindow.myPlayer && !!unsafeWindow.myPlayer.duration) {
-        _0x555517 = unsafeWindow.myPlayer.currentTime();
-        if (unsafeWindow.myPlayer.currentTime() >= unsafeWindow.myPlayer.duration()) return true;
+        _0x4571fd = unsafeWindow.myPlayer.currentTime();
+        if (unsafeWindow.myPlayer.currentTime() >= unsafeWindow.myPlayer.duration()) {
+          return true;
+        }
       }
       return false;
-    }, 1000, -1).then(_0x1caf16 => {
-      _0x22ef36.confirmRun("检测到当前课程实际已经完成，5秒后结束观看。如果进度不正常，请点击下面【取消执行】按钮，推动进度补充学习时长", 5000).then(_0xbfdf2a => {
-        _0x22ef36.setGMData("refreshList", _0x22ef36.now());
-        _0x22ef36.setGMData("closeVideo", _0x22ef36.now());
+    }, 1000, -1).then(_0x1e3805 => {
+      _0x36476b.confirmRun("检测到当前课程实际已经完成，5秒后结束观看。如果进度不正常，请点击下面【取消执行】按钮，推动进度补充学习时长", 5000).then(_0x73ae91 => {
+        _0x36476b.setGMData("refreshList", _0x36476b.now());
+        _0x36476b.setGMData("closeVideo", _0x36476b.now());
       });
     });
     setInterval(() => {
-      unsafeWindow.myPlayer.currentTime() == _0x555517 && _0x22ef36.confirmRun("检测到视频好像卡住了，准备重新载入视频开始播放", 10 * 1000).then(_0x4f6434 => {
-        console.log("check 卡住");
-        _0x22ef36.setGMData("refreshList", _0x22ef36.now());
-        _0x22ef36.setGMData("closeVideo", _0x22ef36.now());
-      });
-    }, 1 * 60 * 1000);
+      if (unsafeWindow.myPlayer.currentTime() == _0x4571fd) {
+        _0x36476b.confirmRun("检测到视频好像卡住了，准备重新载入视频开始播放", 10000).then(_0x56ad61 => {
+          console.log("check 卡住");
+          _0x36476b.setGMData("refreshList", _0x36476b.now());
+          _0x36476b.setGMData("closeVideo", _0x36476b.now());
+        });
+      }
+    }, 60000);
   },
-  async "page_list"() {
+  async page_list() {
     console.log("%c page_list", "background:rgb(255,0,0);color:#fff");
-    await _0x22ef36.gmAuthDownScore("3353432c32fe424a8a1e1a395cc01171");
-    $("body").prepend("<div style=\"padding: 10px;background: #517ddb;color: #fff;text-align: center;font-size: 20px;\">\n        <p>因每个地方课程学习要求不一样，请先手动选好课程后再使用脚本。</p>\n        <p>部分课程视频无法播放，非脚本问题。对于这类课程或PPT课程，请取消选课或者先点击【跳过】按钮设置跳过，后面手动来补一下学时。</p>\n        </div>");
-    _0x22ef36.setGMData("videoType", "1");
-    _0x22ef36.setGMData("closeVideo", _0x22ef36.now());
-    GM_addValueChangeListener("refreshList", function (_0x5addb3, _0x5a2498, _0x3aa481, _0x2c1a6c) {
-      _0x22ef36.setGMData("refreshListCallback", _0x22ef36.now());
-      _0x22ef36.confirmRun("3秒后刷新页面更新最新进度").then(_0x1e8681 => {
+    await _0x36476b.gmAuthDownScore("3353432c32fe424a8a1e1a395cc01171");
+    _0x36476b.setGMData("videoType", "1");
+    _0x36476b.setGMData("closeVideo", _0x36476b.now());
+    GM_addValueChangeListener("refreshList", function (_0x451ac5, _0x2515a4, _0x216d77, _0xb349ca) {
+      _0x36476b.setGMData("refreshListCallback", _0x36476b.now());
+      _0x36476b.confirmRun("3秒后刷新页面更新最新进度").then(_0x5ca682 => {
         top.location.reload();
       });
     });
-    _0x22ef36.clickNextCourse();
+    _0x36476b.clickNextCourse();
   },
-  "checkVideoPlay"() {
-    let _0x4ddce7 = _0x22ef36.getCurTime();
-    return new Promise(_0x2d098b => {
+  checkVideoPlay() {
+    let _0x192b99 = _0x36476b.getCurTime();
+    return new Promise(_0x3f22bd => {
       setTimeout(() => {
-        if (_0x22ef36.getTotalTime() > 0 && _0x22ef36.getCurTime() == _0x4ddce7) {
-          _0x22ef36.play();
+        if (_0x36476b.getTotalTime() > 0 && _0x36476b.getCurTime() == _0x192b99) {
+          _0x36476b.play();
         }
-        _0x4ddce7 = _0x22ef36.getCurTime();
-        _0x2d098b();
+        _0x192b99 = _0x36476b.getCurTime();
+        _0x3f22bd();
       }, 3000);
     });
   },
-  "timeSecondsFormat"(_0xc4905c) {
-    _0xc4905c = Math.floor(Math.abs(_0xc4905c));
-    var _0x10b265 = Math.floor(_0xc4905c / 3600);
-    var _0x2c87f1 = Math.floor(_0xc4905c % 3600 / 60);
-    var _0x4c68ab = _0xc4905c % 60;
-    _0x10b265 = _0x10b265 < 10 ? "0" + _0x10b265 : _0x10b265;
-    _0x2c87f1 = _0x2c87f1 < 10 ? "0" + _0x2c87f1 : _0x2c87f1;
-    _0x4c68ab = _0x4c68ab < 10 ? "0" + _0x4c68ab : _0x4c68ab;
-    return _0x10b265 + ":" + _0x2c87f1 + ":" + _0x4c68ab;
+  timeSecondsFormat(_0x383f12) {
+    _0x383f12 = Math.floor(Math.abs(_0x383f12));
+    var _0x3305c6 = Math.floor(_0x383f12 / 3600);
+    var _0x475340 = Math.floor(_0x383f12 % 3600 / 60);
+    var _0x5b3baa = _0x383f12 % 60;
+    _0x3305c6 = _0x3305c6 < 10 ? "0" + _0x3305c6 : _0x3305c6;
+    _0x475340 = _0x475340 < 10 ? "0" + _0x475340 : _0x475340;
+    _0x5b3baa = _0x5b3baa < 10 ? "0" + _0x5b3baa : _0x5b3baa;
+    return _0x3305c6 + ":" + _0x475340 + ":" + _0x5b3baa;
   },
-  "setSkipHtml"() {
-    let _0x21bb3b = _0x22ef36.getGMData("skipList", []);
+  setSkipHtml() {
+    let _0x410938 = _0x36476b.getGMData("skipList", []);
     $(".zfk-skip").remove();
-    $(".listframe tr").not(".listheader").each((_0x673b61, _0x2eeace) => {
-      let _0x572ebe = _0x22ef36.parseQueryString($(_0x2eeace).find("td:first a").attr("href")).id.replace(/[^a-zA-Z0-9]/g, "");
-      if (_0x21bb3b.includes(_0x572ebe)) {
-        $(_0x2eeace).find("td:first a").html("<span class=\"zfk-skip tips\">[已跳过]</span>" + $(_0x2eeace).find("td:first a").text());
-        $(_0x2eeace).find("td:first").append("<button type=\"button\" class=\"zfk-btn zfk-skip\" onclick=\"zfk.skip('" + _0x572ebe + "',false)\">取消跳过</button>");
-      } else $(_0x2eeace).find("td:first").append("<button type=\"button\" class=\"zfk-btn zfk-skip\"  onclick=\"zfk.skip('" + _0x572ebe + "',true)\">跳过</button>");
+    $(".listframe tr").not(".listheader").each((_0x5640d3, _0x5d9964) => {
+      let _0xa2e4b6 = _0x36476b.parseQueryString($(_0x5d9964).find("td:first a").attr("href")).id.replace(/[^a-zA-Z0-9]/g, "");
+      if (_0x410938.includes(_0xa2e4b6)) {
+        $(_0x5d9964).find("td:first a").html("<span class=\"zfk-skip tips\">[已跳过]</span>" + $(_0x5d9964).find("td:first a").text());
+        $(_0x5d9964).find("td:first").append("<button type=\"button\" class=\"zfk-btn zfk-skip\" onclick=\"zfk.skip('" + _0xa2e4b6 + "',false)\">取消跳过</button>");
+      } else {
+        $(_0x5d9964).find("td:first").append("<button type=\"button\" class=\"zfk-btn zfk-skip\"  onclick=\"zfk.skip('" + _0xa2e4b6 + "',true)\">跳过</button>");
+      }
     });
   },
-  "clickNextCourse"() {
+  clickNextCourse() {
     console.log("%c clickNextCourse", "background:rgb(255,0,0);color:#fff");
-    _0x22ef36.waitOf(_0x20c1f0 => $(".listframe tr").not(".listheader").length > 0).then(_0x554d46 => {
-      let _0x3a1fe4 = unsafeWindow.w;
-      unsafeWindow.w = _0x1aa2b9 => {
-        _0x22ef36.setGMData("finishVideoID", null);
-        if (_0x22ef36.pageData.isFinishVideo) {
-          let _0x587453 = _0x22ef36.parseQueryString(_0x1aa2b9);
-          if (_0x587453.courseId) {
-            _0x22ef36.setGMData("finishVideoID", _0x587453.courseId);
+    _0x36476b.waitOf(_0x510fa9 => $(".listframe tr").not(".listheader").length > 0).then(_0x537f6e => {
+      let _0x249efd = unsafeWindow.w;
+      unsafeWindow.w = _0x2886a9 => {
+        _0x36476b.setGMData("finishVideoID", null);
+        if (_0x36476b.pageData.isFinishVideo) {
+          let _0x40f35d = _0x36476b.parseQueryString(_0x2886a9);
+          if (_0x40f35d.courseId) {
+            _0x36476b.setGMData("finishVideoID", _0x40f35d.courseId);
           }
         }
-        _0x3a1fe4(_0x1aa2b9);
+        _0x249efd(_0x2886a9);
       };
-      _0x22ef36.pageData.isFinishVideo = false;
-      _0x22ef36.setSkipHtml();
-      let _0x4e2808 = _0x22ef36.getGMData("skipList", []);
-      $(".listframe tr").not(".listheader").each((_0x3e80ac, _0x39cdfd) => {
-        let _0x339e6f = _0x22ef36.parseQueryString($(_0x39cdfd).find("td:first a").attr("href")).id.replace(/[^a-zA-Z0-9]/g, "");
-        if (_0x4e2808.includes(_0x339e6f)) return true;
-        let _0x1fa02c = Number($(_0x39cdfd).find("td").eq(4).text().trim().replace("%", ""));
-        if (_0x1fa02c == 100) return true;
-        let _0x37d265 = top.location.href;
-        return _0x37d265.toUpperCase().includes("/gdceportal/study/studyCenter.aspx?".toUpperCase()) && (_0x37d265 = _0x37d265.split("?")[0]), _0x22ef36.setGMData("listUrl", _0x37d265), _0x22ef36.confirmRun("3秒后开始下一步", 3000).then(_0x3d2ffd => {
-          let _0x13077a = Number($(_0x39cdfd).find("td").eq(5).find("a").attr("title").replace(/[^0-9\.]*/g, ""));
-          _0x22ef36.pageData.isFinishVideo = _0x13077a == 100;
-          $(_0x39cdfd).find("td").eq(5).find("a")[0].click();
-          _0x22ef36.alertMsg("请勿关闭当前页面，脚本会在视频播放完毕后自动开启下一门课程学习");
-        }), false;
+      _0x36476b.pageData.isFinishVideo = false;
+      _0x36476b.setSkipHtml();
+      let _0x6c4423 = _0x36476b.getGMData("skipList", []);
+      $(".listframe tr").not(".listheader").each((_0x1e9188, _0x2a1a61) => {
+        let _0x80934e = _0x36476b.parseQueryString($(_0x2a1a61).find("td:first a").attr("href")).id.replace(/[^a-zA-Z0-9]/g, "");
+        if (_0x6c4423.includes(_0x80934e)) {
+          return true;
+        }
+        let _0x4e365c = Number($(_0x2a1a61).find("td").eq(4).text().trim().replace("%", ""));
+        if (_0x4e365c == 100) {
+          return true;
+        }
+        let _0x2c9615 = top.location.href;
+        if (_0x2c9615.toUpperCase().includes("/gdceportal/study/studyCenter.aspx?".toUpperCase())) {
+          _0x2c9615 = _0x2c9615.split("?")[0];
+        }
+        _0x36476b.setGMData("listUrl", _0x2c9615);
+        _0x36476b.confirmRun("3秒后开始下一步", 3000).then(_0x58398e => {
+          let _0x32fba7 = Number($(_0x2a1a61).find("td").eq(5).find("a").attr("title").replace(/[^0-9\.]*/g, ""));
+          _0x36476b.pageData.isFinishVideo = _0x32fba7 == 100;
+          $(_0x2a1a61).find("td").eq(5).find("a")[0].click();
+          _0x36476b.alertMsg("请勿关闭当前页面，脚本会在视频播放完毕后自动开启下一门课程学习");
+          let _0x484dcd = false;
+          GM_addValueChangeListener("checkVideoPageCallback", function (_0x2e92d9, _0x20c7e3, _0x4d6fed, _0x5c5342) {
+            _0x484dcd = true;
+          });
+          setTimeout(() => {
+            if (!_0x484dcd) {
+              top.zfk.openLjTips(false);
+            }
+          }, 10000);
+        });
+        return false;
       });
     });
   },
-  "skip"(_0x3820da, _0x1c4f0d) {
-    let _0x4bcb5c = _0x22ef36.getGMData("skipList", []);
-    if (_0x1c4f0d && !_0x4bcb5c.includes(_0x3820da)) _0x4bcb5c.push(_0x3820da), _0x22ef36.setGMData("skipList", _0x4bcb5c), layer.msg("设置跳过成功"), _0x22ef36.setSkipHtml();else {
-      if (!_0x1c4f0d && _0x4bcb5c.includes(_0x3820da)) {
-        let _0xe87568 = _0x4bcb5c.findIndex(_0x757ffd => _0x757ffd == _0x3820da);
-        _0x4bcb5c.splice(_0xe87568, 1);
-        _0x22ef36.setGMData("skipList", _0x4bcb5c);
+  skip(_0x3d0cd9, _0x47457f) {
+    let _0x36361b = _0x36476b.getGMData("skipList", []);
+    if (_0x47457f && !_0x36361b.includes(_0x3d0cd9)) {
+      _0x36361b.push(_0x3d0cd9);
+      _0x36476b.setGMData("skipList", _0x36361b);
+      layer.msg("设置跳过成功");
+      _0x36476b.setSkipHtml();
+    } else {
+      if (!_0x47457f && _0x36361b.includes(_0x3d0cd9)) {
+        let _0x236aac = _0x36361b.findIndex(_0x445866 => _0x445866 == _0x3d0cd9);
+        _0x36361b.splice(_0x236aac, 1);
+        _0x36476b.setGMData("skipList", _0x36361b);
         layer.msg("取消跳过成功");
-        _0x22ef36.setSkipHtml();
+        _0x36476b.setSkipHtml();
       }
     }
   },
-  "nextPage"() {
+  nextPage() {
     console.log("%c nextPage", "background:rgb(255,0,0);color:#fff");
-    let _0x48aec0 = $(".progressvalue").eq(0).parents("tr")[0];
+    let _0xf540a0 = $(".progressvalue").eq(0).parents("tr")[0];
     $(".paginate_active").next()[0].click();
-    _0x22ef36.waitOf(_0x69e0b2 => $(".progressvalue").eq(0).parents("tr")[0] !== _0x48aec0).then(_0x15bb9d => {
-      _0x22ef36.clickNextCourse();
+    _0x36476b.waitOf(_0x1f7385 => $(".progressvalue").eq(0).parents("tr")[0] !== _0xf540a0).then(_0x2eec4c => {
+      _0x36476b.clickNextCourse();
     });
   },
-  "play"() {
+  play() {
     $("video")[0].volume = 0;
     $("video")[0].play();
   },
-  "setStep"() {
-    _0x22ef36.getTotalTime() > 60 && ($("video")[0].currentTime = _0x22ef36.getTotalTime() - 3);
+  setStep() {
+    if (_0x36476b.getTotalTime() > 60) {
+      $("video")[0].currentTime = _0x36476b.getTotalTime() - 3;
+    }
   },
-  "getVideo"() {
-    if ($("video").length == 0) return undefined;
+  getVideo() {
+    if ($("video").length == 0) {
+      return undefined;
+    }
     return $("video")[0];
   },
-  "showVersionAlert"(_0x379372 = true) {
-    let _0x4168c4 = _0x22ef36.getGMData("showVersionAlert", "");
-    if (!_0x379372 && _0x4168c4 == _0x22ef36.getGMData("version")) return;
+  showVersionAlert(_0x544257 = true) {
+    let _0x148baa = _0x36476b.getGMData("showVersionAlert", "");
+    if (!_0x544257 && _0x148baa == _0x36476b.getGMData("version")) {
+      return;
+    }
     layer.open({
-      "type": "1",
-      "title": "版本号：" + _0x22ef36.setting.version.version,
-      "content": _0x22ef36.setting.version.body,
-      "btn": "我知道了",
-      "area": ["600px", "auto"],
-      "yes": function (_0xf05d97) {
-        _0x22ef36.setGMData("showVersionAlert", _0x22ef36.getGMData("version"));
-        layer.close(_0xf05d97);
+      type: "1",
+      title: "版本号：" + _0x36476b.setting.version.version,
+      content: _0x36476b.setting.version.body,
+      btn: "我知道了",
+      area: ["600px", "auto"],
+      yes: function (_0x3c1fed) {
+        _0x36476b.setGMData("showVersionAlert", _0x36476b.getGMData("version"));
+        layer.close(_0x3c1fed);
       }
     });
   },
-  "registerMenuCommandTemplate"() {
-    GM_registerMenuCommand("我的信息", _0x22ef36.myInfo);
-    GM_registerMenuCommand("启动专题学习", _0x22ef36.page_mergeClass);
-    GM_registerMenuCommand("联系作者", _0x22ef36.linkAuthor);
-    GM_registerMenuCommand("版本：" + _0x22ef36.setting.version.version, _0x22ef36.showVersionAlert);
+  async callRegisterMenuCommand(_0x21c599, _0x2fb0fb) {
+    if (!_0x36476b.pageData.menuBtnIndex) {
+      _0x36476b.pageData.menuBtnIndex = 0;
+    }
+    GM_registerMenuCommand(_0x21c599, _0x2fb0fb);
+    await _0x36476b.waitOf(_0x5a40b3 => $("body:visible").length > 0);
+    await _0x36476b.waitTimeout(500);
+    if ($("#zfkLeftMenuContainer").length > 0) {
+      _0x36476b.pageData.menuBtnIndex++;
+      $("#zfkLeftMenuContainer .zfkLeftMenuBtnUl").append("<li id=\"zfkMenuBtn_" + _0x36476b.pageData.menuBtnIndex + "\">" + _0x21c599 + "</li>");
+      $("#zfkMenuBtn_" + _0x36476b.pageData.menuBtnIndex).click(function () {
+        _0x2fb0fb();
+      });
+    }
   },
-  "linkAuthor"() {
+  openDoc() {
+    window.open(_0x5b2bc5);
+  },
+  registerMenuCommandTemplate() {
+    _0x36476b.callRegisterMenuCommand("使用说明", _0x36476b.openDoc);
+    _0x36476b.callRegisterMenuCommand("我的信息", _0x36476b.myInfo);
+    _0x36476b.callRegisterMenuCommand("启动专题学习", _0x36476b.page_mergeClass);
+    _0x36476b.callRegisterMenuCommand("联系作者", _0x36476b.linkAuthor);
+    _0x36476b.callRegisterMenuCommand("版本：" + _0x36476b.setting.version.version, _0x36476b.showVersionAlert);
+  },
+  linkAuthor() {
     window.open("http://doc.zhanyc.cn/contact-me/");
   },
-  "logout"() {
-    _0x22ef36.delGMData("token");
+  logout() {
+    _0x36476b.delGMData("token");
     layer.msg("脚本账号已退出");
   },
-  "setClip"(_0x7389bf) {
-    GM_setClipboard(_0x7389bf, "text");
+  setClip(_0xce0195) {
+    GM_setClipboard(_0xce0195, "text");
     layer.msg("复制成功");
   },
-  "callAuthSuccess"() {
-    _0x22ef36.setGMData("authSuccess", _0x22ef36.now());
-  },
-  "initBuyAuth"() {
-    !_0x22ef36.pageData.authListnerIndex && (_0x22ef36.pageData.authListnerIndex = GM_addValueChangeListener("authSuccess", function (_0x318b60, _0x5ad485, _0xbd5e68, _0x486447) {
-      _0x486447 && (layer.close(_0x22ef36.pageData.myInfoIndex), layer.close(_0x22ef36.pageData.noAuthIndex), layer.open({
-        "type": "1",
-        "offset": "100px",
-        "title": "脚本授权提示",
-        "content": "<div style=\"padding:16px;font-size:20px;\">😃授权购买成功，刷新页面后授权生效</div>"
-      }));
-    }));
-    !_0x22ef36.buyAuthFun && (_0x22ef36.buyAuthFun = function () {
-      let _0x551f97 = "https://m.zhanyc.cn";
-      _0x48445f && (_0x551f97 = "http://localhost:3000");
-      window.open(_0x551f97 + "/yh-auth?i=" + baseConfig.project.id + "&t=" + _0x22ef36.getGMData("token"));
-    });
-  },
-  "myInfo"() {
-    _0x22ef36.initBuyAuth();
-    _0x22ef36.gmAuthPost("/yh/user/myInfo").then(_0x371e82 => {
-      if (_0x48445f) console.log(_0x371e82);
-      let _0x57d6a4 = "脚本ID：【" + baseConfig.project.id + "】 脚本账号昵称：【" + _0x371e82.name + "】 脚本账号：【" + _0x371e82.acc + "】",
-        _0x539dcd = "\n        <div class=\"p-10 zfk-container\" style=\"padding: 10px;\">\n        <div class=\"kv\" style=\"text-align: center;color: #ffffff;background: #38a1ff;font-weight: bold;margin: -10px -10px 10px;\">" + (_0x22ef36.setting.tjjl || "") + "</div>\n        <div class=\"kv\"><label>脚本ID：</label><span>【" + baseConfig.project.id + "】</span></div>\n        <div class=\"kv\"><label>脚本账号昵称：</label><span>【" + _0x371e82.name + "】</span></div>\n        <div class=\"kv\"><label>脚本账号：</label><span>【" + _0x371e82.acc + "】</span></div>\n\n        <div class=\"kv\" style=\"text-align: center;margin: 10px 0 20px;\">\n          <button onclick=\"zfk.buyAuthFun()\" style=\"cursor: pointer;background:#BE2EDD;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">自助购买授权（👍推荐）</button>\n          <button onclick=\"zfk.setClip('" + _0x57d6a4 + "')\" style=\"cursor: pointer;background:#34495E;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">点这里复制以上信息</button>\n        </div>\n        <div class=\"kv\" style=\"text-align: center;\">\n          <button onclick=\"window.open('https://www.todesk.com/download.html')\" style=\"cursor: pointer;background:#009349;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">下载远程控制软件（需要协助才下载）</button>\n          <button onclick=\"zfk.logout()\" style=\"cursor: pointer;background:#FF6B81;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">退出脚本账号</button>\n        </div>\n        </div>\n        ";
-      _0x22ef36.pageData.myInfoIndex = layer.open({
-        "type": "1",
-        "title": "脚本信息",
-        "content": _0x539dcd,
-        "area": ["460px", "300px"],
-        "offset": "100px"
-      });
-    });
-  },
-  "addStyle"() {
+  addStyle() {
     GM_addStyle("\n      .zfk-btn{background-color:#0fbcf9;color:white;padding:4px 12px;border:none;box-sizing:content-box;font-size:14px;height:20px;border-radius:4px;cursor:pointer;display:inline-block;border:1px solid transparent;white-space:nowrap;user-select:none;text-align:center;vertical-align:middle}.zfk-btn:hover{opacity:.8}.zfk-btn.success{background-color:#38b03f}.zfk-btn.warning{background-color:#f1a325}.zfk-btn.info{background-color:#03b8cf}.zfk-btn.danger{background-color:#ea644a}.zfk-form-tips{font-size:1.2em;color:red}.tips{color:red}.zfk-form textarea,.zfk-form input[type=text],.zfk-form input[type=number],.zfk-form input[type=password]{border:1px solid #888;border-radius:4px;padding:5px;box-sizing:border-box}.zfk-form textarea{width:100%}.zfk-form-item{margin-bottom:10px}.zfk-form-item>label:first-child{width:7em;text-align:right;display:inline-block;padding-right:5px;margin-right:0}.zfk-form-item label{margin-right:4px}.zfk-form-item.block>label:first-child{text-align:left;display:block;width:100%;font-weight:bold}.text-l{text-align:left !important}.text-c{text-align:center !important}.text-r{text-align:right !important}.p-0{padding:0px !important}.p-5{padding:5px !important}.p-10{padding:10px !important}.p-15{padding:15px !important}.p-20{padding:20px !important}.p-t-0{padding-top:0px !important}.p-t-5{padding-top:5px !important}.p-t-10{padding-top:10px !important}.p-t-15{padding-top:15px !important}.p-t-20{padding-top:20px !important}.p-b-0{padding-bottom:0px !important}.p-b-5{padding-bottom:5px !important}.p-b-10{padding-bottom:10px !important}.p-b-15{padding-bottom:15px !important}.p-b-20{padding-bottom:20px !important}.p-l-0{padding-left:0px !important}.p-l-5{padding-left:5px !important}.p-l-10{padding-left:10px !important}.p-l-15{padding-left:15px !important}.p-l-20{padding-left:20px !important}.p-r-0{padding-right:0px !important}.p-r-5{padding-right:5px !important}.p-r-10{padding-right:10px !important}.p-r-15{padding-right:15px !important}.p-r-20{padding-right:20px !important}.p-0{padding:0px !important}.p-5{padding:5px !important}.p-10{padding:10px !important}.p-15{padding:15px !important}.p-20{padding:20px !important}.m-t-0{margin-top:0px !important}.m-t-5{margin-top:5px !important}.m-t-10{margin-top:10px !important}.m-t-15{margin-top:15px !important}.m-t-20{margin-top:20px !important}.m-b-0{margin-bottom:0px !important}.m-b-5{margin-bottom:5px !important}.m-b-10{margin-bottom:10px !important}.m-b-15{margin-bottom:15px !important}.m-b-20{margin-bottom:20px !important}.m-l-0{margin-left:0px !important}.m-l-5{margin-left:5px !important}.m-l-10{margin-left:10px !important}.m-l-15{margin-left:15px !important}.m-l-20{margin-left:20px !important}.m-r-0{margin-right:0px !important}.m-r-5{margin-right:5px !important}.m-r-10{margin-right:10px !important}.m-r-15{margin-right:15px !important}.m-r-20{margin-right:20px !important}.bold{font-weight:bold !important}.tips-box{padding:10px;border:1px solid red;background-color:#fff0f0;color:red}.bold{font-weight:bold}.font-l{font-size:1.2em}.font-xl{font-size:40px}.font-l{font-size:25px}.color-default{color:#ea644a !important}.color-success{color:#38b03f !important}.color-warning{color:#f1a325 !important}.color-danger{color:#ea644a !important}.bg-default{background-color:#ea644a !important}.bg-success{background-color:#38b03f !important}.bg-warning{background-color:#f1a325 !important}.bg-danger{background-color:#ea644a !important}.zfk-table{border-collapse:collapse}.zfk-table thead{background-color:#1abc9c}.zfk-table td,.zfk-table th{text-align:center;padding:6px;border:1px solid #888}.zfk-table tr:nth-child(2n){background-color:#f2f2f2}.zfk-table tr:hover{background-color:#fff799}.zfk-container *{font-size:17px}\n      ");
+    GM_addStyle(".listrowd1,.listrowd{position: relative;}button.zfk-skip{position:absolute;left:23em;top:10px}");
   },
-  "addMenu"() {
-    if ($("#zfkLeftMenuContainer").length > 0) return;
-    GM_addStyle("#zfkLeftMenuContainer{z-index:9999;position:fixed;left:0;top:40%;color:#fff}#zfkLeftMenuContainer .zfkLeftMenuStep{position:absolute;background:#3498db;width:max-content;top:-35px;display:block;padding:6px}#zfkLeftMenuContainer .zfkLeftMenu{background:rgba(0,0,0,0.4);border-radius:0 4px 4px 0;padding:6px}#zfkLeftMenuContainer .zfkLeftMenu:hover .zfkLeftMenuBtn-titile{width:auto}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtn-titile{cursor:pointer;word-wrap:break-word;width:1em;display:inline-block}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl{display:none;margin:0 -6px;box-sizing:border-box}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl li{list-style:none;color:#fff !important;cursor:pointer;padding:6px}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl li:hover{background:#000}#zfkLeftMenuContainer .zfkLeftMenu .zfkLeftMenuBtnUl li::before{content:\"+ \"}#zfkIp51Config{padding:10px}");
-    $("\n      <div id=\"zfkLeftMenuContainer\">\n      <div class=\"zfkLeftMenu\">\n        <span class=\"zfkLeftMenuBtn-titile\">菜单</span>\n        <ul class=\"zfkLeftMenuBtnUl\">\n          <li id=\"zfkMenuConfigBtn\">设置</li>\n        </ul>\n  \n      </div>\n      </div>\n        ").appendTo("body");
-    $("#zfkMenuConfigBtn").click(function () {
-      _0x22ef36.openConfig();
-    });
-    $(".zfkLeftMenu").hover(() => {
-      $(".zfkLeftMenuBtnUl").show();
-    }, () => {
-      $(".zfkLeftMenuBtnUl").hide();
-    });
-  },
-  "openConfig"() {
-    let _0x1dc981 = "\n      <div id=\"zfkConfig\" style=\"padding: 20px;\">\n\n      <form class=\"layui-form layui-form-pane\" lay-filter=\"configForm\">\n    <div class=\"layui-form-item\" pane>\n      <label class=\"layui-form-label\">价格提取</label>\n      <div class=\"layui-input-block\">\n        <input type=\"radio\" name=\"priceTQ\" value=\"1\" title=\"是\">\n        <input type=\"radio\" name=\"priceTQ\" value=\"0\" title=\"否\">\n      </div>\n    </div>\n    <div class=\"layui-form-item\">\n      <div class=\"layui-input-block\">\n        <button class=\"layui-btn\" type=\"button\" lay-filter=\"formDemo\" onclick=\"zfk.saveConfig()\">保存</button>\n      </div>\n    </div>\n  </form>\n    </div>\n    ";
+  openConfig() {
+    let _0x512001 = "\n      <div id=\"zfkConfig\" style=\"padding: 20px;\">\n\n      <form class=\"layui-form layui-form-pane\" lay-filter=\"configForm\">\n    <div class=\"layui-form-item\" pane>\n      <label class=\"layui-form-label\">价格提取</label>\n      <div class=\"layui-input-block\">\n        <input type=\"radio\" name=\"priceTQ\" value=\"1\" title=\"是\">\n        <input type=\"radio\" name=\"priceTQ\" value=\"0\" title=\"否\">\n      </div>\n    </div>\n    <div class=\"layui-form-item\">\n      <div class=\"layui-input-block\">\n        <button class=\"layui-btn\" type=\"button\" lay-filter=\"formDemo\" onclick=\"zfk.saveConfig()\">保存</button>\n      </div>\n    </div>\n  </form>\n    </div>\n    ";
     layer.open({
-      "type": "1",
-      "title": "设置",
-      "content": _0x1dc981,
-      "btn": false,
-      "area": ["500px", "460px"]
+      type: "1",
+      title: "设置",
+      content: _0x512001,
+      btn: false,
+      area: ["500px", "460px"]
     });
     layui.form.render();
-    let _0x32250e = _0x22ef36.getConfig();
-    layui.form.val("configForm", _0x32250e);
+    let _0x3d54dd = _0x36476b.getConfig();
+    layui.form.val("configForm", _0x3d54dd);
   },
-  "getElByText"(_0x1a882b, _0x100fee, _0x391cc8 = "eq", _0x43f3ad = true) {
-    let _0x4550d0 = null;
-    return $(_0x1a882b).each((_0x78b3af, _0x187a9b) => {
-      if (_0x43f3ad && !$(_0x187a9b).is(":visible")) {
+  getElByText(_0x82f3b7, _0x54bb0d, _0x5f5979 = "eq", _0x3d986d = true) {
+    let _0xcaf582 = null;
+    $(_0x82f3b7).each((_0xcd7089, _0x19732e) => {
+      if (_0x3d986d && !$(_0x19732e).is(":visible")) {
         return true;
       }
-      if (_0x391cc8 == "eq" && $(_0x187a9b).text().trim() == _0x100fee) {
-        return _0x4550d0 = $(_0x187a9b), false;
+      if (_0x5f5979 == "eq" && $(_0x19732e).text().trim() == _0x54bb0d) {
+        _0xcaf582 = $(_0x19732e);
+        return false;
       } else {
-        if (_0x391cc8 == "startsWith" && $(_0x187a9b).text().trim().startsWith(_0x100fee)) {
-          return _0x4550d0 = $(_0x187a9b), false;
+        if (_0x5f5979 == "startsWith" && $(_0x19732e).text().trim().startsWith(_0x54bb0d)) {
+          _0xcaf582 = $(_0x19732e);
+          return false;
         } else {
-          if (_0x391cc8 == "endsWith" && $(_0x187a9b).text().trim().endsWith(_0x100fee)) {
-            return _0x4550d0 = $(_0x187a9b), false;
+          if (_0x5f5979 == "endsWith" && $(_0x19732e).text().trim().endsWith(_0x54bb0d)) {
+            _0xcaf582 = $(_0x19732e);
+            return false;
           }
         }
       }
-    }), _0x4550d0;
+    });
+    return _0xcaf582;
   },
-  "getElListByText"(_0x582ad6, _0x3412bd, _0x26061e = "eq", _0x55bbc2 = true) {
-    let _0x39a4fd = [];
-    return $(_0x582ad6).each((_0x4feb30, _0x437133) => {
-      if (_0x55bbc2 && !$(_0x582ad6).is(":visible")) {
+  getElListByText(_0x249d2f, _0x272f2a, _0x27401c = "eq", _0xb07e2f = true) {
+    let _0x5774a4 = [];
+    $(_0x249d2f).each((_0x27d237, _0x13d70) => {
+      if (_0xb07e2f && !$(_0x249d2f).is(":visible")) {
         return true;
       }
-      if (_0x26061e == "eq" && $(_0x437133).text().trim() == _0x3412bd) {
-        _0x39a4fd.push($(_0x437133));
+      if (_0x27401c == "eq" && $(_0x13d70).text().trim() == _0x272f2a) {
+        _0x5774a4.push($(_0x13d70));
       } else {
-        if (_0x26061e == "startsWith" && $(_0x437133).text().trim().startsWith(_0x3412bd)) _0x39a4fd.push($(_0x437133));else _0x26061e == "endsWith" && $(_0x437133).text().trim().endsWith(_0x3412bd) && _0x39a4fd.push($(_0x437133));
+        if (_0x27401c == "startsWith" && $(_0x13d70).text().trim().startsWith(_0x272f2a)) {
+          _0x5774a4.push($(_0x13d70));
+        } else {
+          if (_0x27401c == "endsWith" && $(_0x13d70).text().trim().endsWith(_0x272f2a)) {
+            _0x5774a4.push($(_0x13d70));
+          }
+        }
       }
-    }), _0x39a4fd;
+    });
+    return _0x5774a4;
   },
-  "confirmRun"(_0x4695cf = "脚本：3秒后执行下一步操作", _0xa9c2e1 = 3000) {
-    return new Promise((_0x4748e5, _0x2bbe0a) => {
-      let _0x3840af = true;
-      clearTimeout(_0x22ef36.pageData.confirmRunIndex);
-      _0x22ef36.pageData.confirmRunIndex = layer.alert(_0x4695cf, {
-        "icon": 3,
-        "title": "是否继续？",
-        "btn": ["取消执行"],
-        "offset": "100px"
-      }, function (_0x4cf63f) {
-        _0x3840af = false;
-        _0x2bbe0a();
-        layer.close(_0x22ef36.pageData.confirmRunIndex);
+  confirmRun(_0x4f2a90 = "脚本：3秒后执行下一步操作", _0xadae56 = 3000) {
+    return new Promise((_0x297b64, _0x180f37) => {
+      let _0x3e3f6e = true;
+      clearTimeout(_0x36476b.pageData.confirmRunIndex);
+      _0x36476b.pageData.confirmRunIndex = layer.alert(_0x4f2a90, {
+        icon: 3,
+        title: "是否继续？",
+        btn: ["取消执行"],
+        offset: "100px"
+      }, function (_0x2d68c6) {
+        _0x3e3f6e = false;
+        _0x180f37();
+        layer.close(_0x36476b.pageData.confirmRunIndex);
       });
       setTimeout(() => {
-        layer.close(_0x22ef36.pageData.confirmRunIndex);
-        _0x4748e5(true);
-      }, _0xa9c2e1);
+        layer.close(_0x36476b.pageData.confirmRunIndex);
+        _0x297b64(true);
+      }, _0xadae56);
     });
   },
-  "saveConfig"() {
-    var _0x25e049 = layui.form.val("configForm");
-    _0x22ef36.setConfig(_0x25e049);
+  saveConfig() {
+    var _0x25fed8 = layui.form.val("configForm");
+    _0x36476b.setConfig(_0x25fed8);
     layer.msg("保存成功");
   },
-  "waitOfAbortTemplate"() {
-    _0x22ef36.pageData.reject.forEach(_0x11f1c8 => {
-      _0x11f1c8.abort();
+  waitOfAbortTemplate() {
+    _0x36476b.pageData.reject.forEach(_0xa14a61 => {
+      _0xa14a61.abort();
     });
-    _0x22ef36.pageData.reject = [];
-    let _0x5bf499 = _0x22ef36.getPromiseWithAbort(_0x22ef36.waitOf(() => {
-      let _0x283ea7 = false;
-      return $jq("div[class][style]").length > 0 && $jq("div[class][style]").each((_0x3b12d9, _0x3a1ddf) => {
-        if ($jq(_0x3a1ddf).attr("class").startsWith("styles_seat_bg_wrap")) {
-          _0x283ea7 = $(_0x3a1ddf).next().find("a[role=\"button\"]").length > 0;
-          if (_0x283ea7) return false;
-        } else {
-          if ($jq(_0x3a1ddf).attr("class").startsWith("styles_bg_white")) {
-            _0x283ea7 = $(_0x3a1ddf).find("a[role=\"button\"]").length > 0;
-            if (_0x283ea7) return false;
+    _0x36476b.pageData.reject = [];
+    let _0x259293 = _0x36476b.getPromiseWithAbort(_0x36476b.waitOf(() => {
+      let _0x763764 = false;
+      if ($jq("div[class][style]").length > 0) {
+        $jq("div[class][style]").each((_0x28f01e, _0x1af93c) => {
+          if ($jq(_0x1af93c).attr("class").startsWith("styles_seat_bg_wrap")) {
+            _0x763764 = $(_0x1af93c).next().find("a[role=\"button\"]").length > 0;
+            if (_0x763764) {
+              return false;
+            }
+          } else {
+            if ($jq(_0x1af93c).attr("class").startsWith("styles_bg_white")) {
+              _0x763764 = $(_0x1af93c).find("a[role=\"button\"]").length > 0;
+              if (_0x763764) {
+                return false;
+              }
+            }
           }
-        }
-      }), _0x283ea7;
+        });
+      }
+      return _0x763764;
     }));
-    _0x22ef36.pageData.reject.push(_0x5bf499);
-    _0x5bf499.promise.then(_0x27aee1 => {
-      _0x22ef36.page_step2Detail_Click();
+    _0x36476b.pageData.reject.push(_0x259293);
+    _0x259293.promise.then(_0xaedc8a => {
+      _0x36476b.page_step2Detail_Click();
     });
   },
-  "setPageData"() {
+  setPageData() {
     this.pageData.url = location.href;
   },
-  "timeoutTemplate"() {
-    let _0xc7333d = 10000,
-      _0xc114fb = 100,
-      _0x101243 = setInterval(() => {
-        console.log("disposeContent index");
-        _0xc7333d -= _0xc114fb;
-        if (_0xc7333d < 0) {
-          clearInterval(_0x101243);
-          console.log("已过" + _0xc7333d / 1000 + "秒，定时器超时退出");
-        }
-        $("#resume-page .geek-name").length > 0 && clearInterval(_0x101243);
-      }, _0xc114fb);
+  timeoutTemplate() {
+    let _0x3a2763 = 10000;
+    let _0x1782c7 = 100;
+    let _0x4c6c67 = setInterval(() => {
+      console.log("disposeContent index");
+      _0x3a2763 -= _0x1782c7;
+      if (_0x3a2763 < 0) {
+        clearInterval(_0x4c6c67);
+        console.log("已过" + _0x3a2763 / 1000 + "秒，定时器超时退出");
+      }
+      if ($("#resume-page .geek-name").length > 0) {
+        clearInterval(_0x4c6c67);
+      }
+    }, _0x1782c7);
   },
-  "getTimeout"() {
-    let _0x42984c = GM_getValue("zfk_jl_config", null),
-      _0x20954c = (Math.random() * (Number(_0x42984c.fwpl2) - Number(_0x42984c.fwpl1)) + Number(_0x42984c.fwpl1)) * 1000;
-    return console.log("getTimeout", _0x20954c), _0x20954c;
+  getTimeout() {
+    let _0x53a3de = GM_getValue("zfk_jl_config", null);
+    let _0x2308f8 = (Math.random() * (Number(_0x53a3de.fwpl2) - Number(_0x53a3de.fwpl1)) + Number(_0x53a3de.fwpl1)) * 1000;
+    console.log("getTimeout", _0x2308f8);
+    return _0x2308f8;
   },
-  "setPageData"() {
-    _0x22ef36.pageData.url = location.href;
-    _0x22ef36.pageData.kcid = _0x22ef36.getUrlParam("courseid");
-    !_0x22ef36.pageData.kcid && (_0x22ef36.pageData.kcid = _0x22ef36.getUrlParam("courseId"));
-    console.log("==========初始化完成：" + _0x22ef36.pageData.url + "============");
+  setPageData() {
+    _0x36476b.pageData.url = location.href;
+    _0x36476b.pageData.kcid = _0x36476b.getUrlParam("courseid");
+    if (!_0x36476b.pageData.kcid) {
+      _0x36476b.pageData.kcid = _0x36476b.getUrlParam("courseId");
+    }
+    console.log("==========初始化完成：" + _0x36476b.pageData.url + "============");
   },
-  "changeReactInputValue"(_0x3778c6, _0x52f63b) {
-    let _0xe83549 = _0x3778c6.value;
-    _0x3778c6.value = _0x52f63b;
-    let _0x3e397c = new Event("input", {
-      "bubbles": true
+  changeReactInputValue(_0x4a6194, _0x3f3e49) {
+    let _0x155a74 = _0x4a6194.value;
+    _0x4a6194.value = _0x3f3e49;
+    let _0x5ba526 = new Event("input", {
+      bubbles: true
     });
-    _0x3e397c.simulated = true;
-    let _0x255ff9 = _0x3778c6._valueTracker;
-    _0x255ff9 && _0x255ff9.setValue(_0xe83549);
-    _0x3778c6.dispatchEvent(_0x3e397c);
+    _0x5ba526.simulated = true;
+    let _0x4e8544 = _0x4a6194._valueTracker;
+    if (_0x4e8544) {
+      _0x4e8544.setValue(_0x155a74);
+    }
+    _0x4a6194.dispatchEvent(_0x5ba526);
   },
-  "intervalUrlTemp"() {
-    let _0x29b840 = "";
+  intervalUrlTemp() {
+    let _0x2d1d3f = "";
     setInterval(() => {
-      let _0x2e8317 = location.href;
-      if (_0x29b840 == _0x2e8317) {
+      let _0x385bb2 = location.href;
+      if (_0x2d1d3f == _0x385bb2) {
         return;
       }
-      _0x29b840 = _0x2e8317;
-      if (_0x2e8317.indexOf("dashboard/merch-picking-hall/merch_promoting") != -1) {} else {
-        if (_0x2e8317.indexOf("mpa/pigeonIM") != -1) {}
+      _0x2d1d3f = _0x385bb2;
+      if (!(_0x385bb2.indexOf("dashboard/merch-picking-hall/merch_promoting") != -1)) {
+        _0x385bb2.indexOf("mpa/pigeonIM") != -1;
       }
     }, 500);
   },
-  "mouseEventTemp"(_0x47597f, _0x5374b2) {
-    let _0x323119 = new MouseEvent("mouseover", {
-      "bubbles": true,
-      "cancelable": true,
-      "clientX": 0,
-      "clientY": 0
+  mouseEventTemp(_0x10c205, _0x16c581) {
+    let _0x394fde = new MouseEvent("mouseover", {
+      bubbles: true,
+      cancelable: true,
+      clientX: 0,
+      clientY: 0
     });
-    $jq(".auxo-dropdown-trigger").eq(1).get(0).dispatchEvent(_0x323119);
+    $jq(".auxo-dropdown-trigger").eq(1).get(0).dispatchEvent(_0x394fde);
   },
-  "waitTimeout"(_0x362071) {
-    return new Promise((_0x5f5246, _0x30d233) => {
+  waitTimeout(_0x16e5c1) {
+    return new Promise((_0x31256c, _0x4ae0ca) => {
       setTimeout(() => {
-        _0x5f5246();
-      }, _0x362071);
+        _0x31256c();
+      }, _0x16e5c1);
     });
   },
-  "waitOf"(_0x24f1cc, _0x58d04f = 1000, _0x1842d6 = 30) {
-    return console.log("%c waitOf", "background:rgb(0,0,0);color:#fff", _0x24f1cc), new Promise((_0x3b6ad3, _0x4ddd0f) => {
-      let _0x41607d = _0x1842d6 * 1000;
+  waitOf(_0x3bb51d, _0x2aad90 = 1000, _0x4f733e = 30) {
+    console.log("%c waitOf", "background:rgb(0,0,0);color:#fff", _0x3bb51d);
+    return new Promise((_0xd46031, _0x1e2d6d) => {
+      let _0x55dafe = _0x4f733e * 1000;
       try {
-        if (_0x24f1cc()) {
-          return _0x3b6ad3();
+        if (_0x3bb51d()) {
+          return _0xd46031();
         }
-      } catch (_0x32b2dd) {
-        console.error(_0x32b2dd);
+      } catch (_0x294132) {
+        console.error(_0x294132);
       }
-      let _0xc9b2df = setInterval(() => {
+      let _0x54f45e = setInterval(() => {
         try {
-          if (_0x1842d6 != -1) {
-            _0x41607d -= _0x58d04f;
-            if (_0x41607d < 0) return clearInterval(_0xc9b2df), _0x4ddd0f();
+          if (_0x4f733e != -1) {
+            _0x55dafe -= _0x2aad90;
+            if (_0x55dafe < 0) {
+              clearInterval(_0x54f45e);
+              return _0x1e2d6d();
+            }
           }
-          if (_0x24f1cc()) {
-            return clearInterval(_0xc9b2df), _0x3b6ad3();
+          if (_0x3bb51d()) {
+            clearInterval(_0x54f45e);
+            return _0xd46031();
           }
-        } catch (_0x2ca829) {
-          console.error(_0x2ca829);
+        } catch (_0x3dee40) {
+          console.error(_0x3dee40);
         }
-      }, _0x58d04f);
+      }, _0x2aad90);
     });
   },
-  "toLogin"() {
-    top.location.href = _0x22ef36.url.login + "?yh=" + window.btoa(encodeURI(top.location.href));
+  toLogin() {
+    top.location.href = _0x36476b.url.login + "?yh=" + window.btoa(encodeURI(top.location.href));
   },
-  "confirmRun"(_0x1d57da = "脚本：3秒后执行下一步操作", _0x224a08 = 3000) {
-    return new Promise((_0x57b1a9, _0x40c308) => {
-      let _0x17ae11 = true;
-      clearTimeout(_0x22ef36.pageData.confirmRunIndex);
-      _0x22ef36.pageData.confirmRunIndex = layer.alert(_0x1d57da, {
-        "icon": 3,
-        "title": "是否继续？",
-        "btn": ["取消执行"],
-        "offset": "100px"
-      }, function (_0x156659) {
-        _0x17ae11 = false;
-        _0x40c308();
-        layer.close(_0x22ef36.pageData.confirmRunIndex);
+  confirmRun(_0x35cc8f = "脚本：3秒后执行下一步操作", _0x86df96 = 3000) {
+    return new Promise((_0x20af2d, _0x548667) => {
+      let _0x140d37 = true;
+      clearTimeout(_0x36476b.pageData.confirmRunIndex);
+      _0x36476b.pageData.confirmRunIndex = layer.alert(_0x35cc8f, {
+        icon: 3,
+        title: "是否继续？",
+        btn: ["取消执行"],
+        offset: "100px"
+      }, function (_0x46ae05) {
+        _0x140d37 = false;
+        _0x548667();
+        layer.close(_0x36476b.pageData.confirmRunIndex);
       });
       setTimeout(() => {
-        layer.close(_0x22ef36.pageData.confirmRunIndex);
-        _0x57b1a9(true);
-      }, _0x224a08);
+        layer.close(_0x36476b.pageData.confirmRunIndex);
+        _0x20af2d(true);
+      }, _0x86df96);
     });
   },
-  "gmAuthGet"(_0x37317c, _0x40906b, _0x159089 = {
-    "showErr": true
+  gmAuthGet(_0x4fc193, _0x4e9358, _0x6a8823 = {
+    showErr: true
   }) {
-    return _0x37317c = _0x22ef36.fullUrl(_0x37317c), console.log("gmGet", _0x37317c), new Promise((_0x544e3b, _0x34ca07) => {
-      if (_0x37317c.indexOf("?") != -1) for (key in _0x40906b) {
-        _0x37317c += "&" + key + "=" + _0x40906b[key];
+    _0x4fc193 = _0x36476b.fullUrl(_0x4fc193);
+    console.log("gmGet", _0x4fc193);
+    return new Promise((_0x1f5438, _0x340918) => {
+      if (_0x4fc193.indexOf("?") != -1) {
+        for (key in _0x4e9358) {
+          _0x4fc193 += "&" + key + "=" + _0x4e9358[key];
+        }
       } else {
-        let _0x3a8fef = true;
-        for (key in _0x40906b) {
-          _0x37317c += (_0x3a8fef ? "?" : "&") + (key + "=" + _0x40906b[key]);
-          _0x3a8fef = false;
+        let _0x50e57c = true;
+        for (key in _0x4e9358) {
+          _0x4fc193 += (_0x50e57c ? "?" : "&") + (key + "=" + _0x4e9358[key]);
+          _0x50e57c = false;
         }
       }
-      let _0x81c34d = {};
-      _0x22ef36.getGMData("token", "") && (_0x81c34d["X-Access-Token"] = _0x22ef36.getGMData("token", ""));
+      let _0x2e300a = {};
+      if (_0x36476b.getGMData("token", "")) {
+        _0x2e300a["X-Access-Token"] = _0x36476b.getGMData("token", "");
+      }
       GM_xmlhttpRequest({
-        "method": "get",
-        "url": _0x37317c,
-        "data": _0x40906b,
-        "headers": _0x81c34d,
-        "responseType": "json",
-        "onload": function (_0x164303) {
-          console.log(_0x164303);
-          let _0x5bb3e3 = _0x164303.response;
-          if (_0x5bb3e3.code != 200) {
-            _0x5bb3e3.message.indexOf("Token失效") != -1 ? (layer.alert("登录信息过期，3秒后自动前往登录页面"), setTimeout(() => {
-              _0x22ef36.toLogin();
-            }, 3000)) : _0x159089.showErr && layer.alert(_0x5bb3e3.message);
-            _0x34ca07(_0x5bb3e3);
-          } else _0x544e3b(_0x5bb3e3.result);
+        method: "get",
+        url: _0x4fc193,
+        data: _0x4e9358,
+        headers: _0x2e300a,
+        responseType: "json",
+        onload: function (_0x35c2e7) {
+          console.log(_0x35c2e7);
+          let _0x4e9358 = _0x35c2e7.response;
+          if (_0x4e9358.code != 200) {
+            if (_0x4e9358.message.indexOf("Token失效") != -1) {
+              layer.alert("登录信息过期，3秒后自动前往登录页面");
+              setTimeout(() => {
+                _0x36476b.toLogin();
+              }, 3000);
+            } else {
+              if (_0x6a8823.showErr) {
+                layer.alert(_0x4e9358.message);
+              }
+            }
+            _0x340918(_0x4e9358);
+          } else {
+            _0x1f5438(_0x4e9358.result);
+          }
         },
-        "onerror": function (_0x407272) {
-          console.log(_0x407272);
-          _0x34ca07(_0x407272);
+        onerror: function (_0x11b44d) {
+          console.log(_0x11b44d);
+          _0x340918(_0x11b44d);
         }
       });
     });
   },
-  "getUserName"() {
-    return _0x22ef36.getGMData("username", "");
+  getUserName() {
+    return _0x36476b.getGMData("username", "");
   },
-  "toUserNamePage"() {
-    alert("脚本启动失败，请按脚本说明文档，请在指定的【启动页面】刷新页面后启动脚本");
-    return;
-  },
-  "gmAuthDownScore"(_0x460649, _0x50b2b1 = true) {
-    return new Promise((_0xbf32af, _0x2bb28b) => {
-      if (_0x22ef36.isDZKFMode() || _0x30587c) {
-        return _0xbf32af(true);
-      }
-      if (typeof _0x22ef36.pageData.downSuccess !== "undefined" && _0x22ef36.pageData.downSuccess.includes(_0x460649) && _0x22ef36.pageData.downSuccessUserName == _0x22ef36.getUserName()) return _0xbf32af(true);else {
-        if (typeof _0x22ef36.pageData.downError !== "undefined" && _0x22ef36.pageData.downError.includes(_0x460649)) return _0x2bb28b(false);
-      }
-      var _0x1b1720 = _0x22ef36.getUserName();
-      if (!_0x1b1720) {
-        _0x22ef36.toUserNamePage();
-        return;
-      }
-      _0x22ef36.gmAuthPost("/yh/price/down", {
-        "id": _0x460649,
-        "key": _0x1b1720
-      }, {
-        "showErr": _0x50b2b1
-      }).then(_0x4f95ba => {
-        _0x22ef36.pageData && (!_0x22ef36.pageData.downSuccess && (_0x22ef36.pageData.downSuccess = []), _0x22ef36.pageData.downSuccess.push(_0x460649), _0x22ef36.pageData.downSuccessUserName = _0x1b1720);
-        _0xbf32af(true);
-      }, _0x3ee56f => {
-        !_0x22ef36.pageData.downError && (_0x22ef36.pageData.downError = []);
-        _0x22ef36.pageData.downError.push(_0x460649);
-        _0x2bb28b(_0x3ee56f);
-      });
-    });
-  },
-  "getGMKey"(_0x410196) {
-    return _0x410196;
-    let _0x19bf49 = localStorage.getItem("ZFK_KEYPREFIX");
-    !_0x19bf49 && (_0x19bf49 = _0x22ef36.generateRandomString(10), localStorage.setItem("ZFK_KEYPREFIX", _0x19bf49));
-    let _0x4faf3b = ["token"];
-    if (_0x4faf3b.includes(_0x410196)) return _0x410196;
-    return _0x19bf49 + "_";
-  },
-  "setGMData"(_0x433c53, _0x3ca8da) {
-    return GM_setValue(_0x22ef36.getGMKey(_0x433c53), _0x3ca8da);
-  },
-  "getUrlParam"(_0x3d2e3b, _0x243d09) {
-    if (arguments.length == 1) {
-      _0x243d09 = _0x3d2e3b;
-      _0x3d2e3b = window.location;
+  getGMKey(_0xfc5dc7) {
+    return _0xfc5dc7;
+    let _0x3d68bc = localStorage.getItem("ZFK_KEYPREFIX");
+    if (!_0x3d68bc) {
+      _0x3d68bc = _0x36476b.generateRandomString(10);
+      localStorage.setItem("ZFK_KEYPREFIX", _0x3d68bc);
     }
-    var _0x166bbd = new RegExp("(^|&)" + _0x243d09 + "=([^&]*)(&|$)"),
-      _0x5c825f = _0x3d2e3b.search.substr(1).match(_0x166bbd);
-    if (_0x5c825f != null) return unescape(_0x5c825f[2]);
+    let _0x561dff = ["token"];
+    if (_0x561dff.includes(_0xfc5dc7)) {
+      return _0xfc5dc7;
+    }
+    return _0x3d68bc + "_";
+  },
+  setGMData(_0x494a83, _0x4843c0) {
+    return GM_setValue(_0x36476b.getGMKey(_0x494a83), _0x4843c0);
+  },
+  getUrlParam(_0x4d8159, _0x288b8d) {
+    if (arguments.length == 1) {
+      _0x288b8d = _0x4d8159;
+      _0x4d8159 = window.location;
+    }
+    var _0x576fa3 = new RegExp("(^|&)" + _0x288b8d + "=([^&]*)(&|$)");
+    var _0xdde281 = _0x4d8159.search.substr(1).match(_0x576fa3);
+    if (_0xdde281 != null) {
+      return unescape(_0xdde281[2]);
+    }
     return "";
   },
-  "alertMsg"(_0x2f5560, _0x2ee5a4 = 0) {
+  toUserNamePage() {
     layer.open({
-      "type": "1",
-      "content": "<div style=\"padding:14px;\">" + _0x2f5560 + "</div>",
-      "title": "脚本提示" + (_0x2ee5a4 == 0 ? "" : "（" + (_0x2ee5a4 / 1000).toFixed(2) + "秒后自动关闭}）"),
-      "offset": "100px",
-      "time": _0x2ee5a4,
-      "btn": "关闭"
-    });
-  },
-  "tipsMsg"(_0xf3a256, _0x57cb0f = 3000) {
-    layer.msg(_0xf3a256, {
-      "offset": "100px",
-      "time": _0x57cb0f
-    });
-  },
-  "confirmMsg"(_0x4eb072 = "请确认", _0x176aef = {}) {
-    let _0x565ca0 = {
-      "title": "脚本提示",
-      "btn": ["确定", "关闭"],
-      "fun1"(_0x209aba) {
-        layer.close(_0x209aba);
-      },
-      "fun2"() {},
-      "fun3"() {}
-    };
-    Object.assign(_0x565ca0, _0x176aef);
-    layer.open({
-      "type": "1",
-      "content": "<div style=\"padding:14px;\">" + _0x4eb072 + "</div>",
-      "title": _0x176aef.title,
-      "offset": "100px",
-      "btn": _0x565ca0.btn,
-      "yes": _0x565ca0.fun1,
-      "btn2": _0x565ca0.fun2,
-      "btn3": _0x565ca0.fun3
-    });
-  },
-  "tipsLogin"(_0xf5cc47 = "【未登录】脚本需要付费后才可使用。点击[确定]按钮将前往[脚本账号]的注册/登录页面") {
-    layer.open({
-      "type": "1",
-      "content": "<div style=\"padding:14px;\">" + _0xf5cc47 + "</div>",
-      "title": "使用脚本前请先登录脚本账号！",
-      "offset": "100px",
-      "btn": ["去登录", "查看授权说明", "关闭"],
-      "yes": function (_0x4676d8) {
-        layer.close(_0x4676d8);
-        _0x22ef36.pageData.loginTipsIndex = layer.alert("已经为您打开登录页面，请留意浏览器窗口");
-        _0x22ef36.toLogin();
-      },
-      "btn2": function (_0x2be397) {
-        return window.open("https://doc.zhanyc.cn/pages/auth/"), false;
-      },
-      "btn2function"(_0x5c40fe) {
-        layer.close(_0x5c40fe);
+      type: 1,
+      title: "脚本启动失败",
+      content: "<div style=\"padding:10px\">脚本启动失败，请按脚本说明文档，请在指定的【启动页面】刷新页面后启动脚本</div>",
+      offset: "100px",
+      area: ["400px", "180px"],
+      btn: ["查看脚本说明文档", "关闭"],
+      yes: function (_0x526131) {
+        window.open(_0x5b2bc5);
+        return false;
       }
     });
+    return;
   },
-  async "openLjTips"(_0x1cb07a = true, _0x943510 = false, _0x57556c = 5000) {
-    return new Promise((_0x468d5c, _0x2f3042) => {
-      let _0x15f806 = layer.open({
-          "type": 1,
-          "title": "请确认",
-          "offset": "100px",
-          "content": "\n      <div style=\"padding:10px\">\n      <p>已经为你打开下一门课程，如果没有打开窗口，请检查浏览器地址栏右侧是否有拦截提示，请选择【永久允许】</p>\n      <p style=\"color:red;\">如下图所示：</p>\n      <img src=\"https://js.zhanyc.cn/img/ljts.jpg\"/>\n      </div>\n      "
-        }),
-        _0x2196a6 = _0x943510 ? location.href : "";
-      GM_addValueChangeListener(_0x22ef36.getGMKey("closeLJTS"), function (_0x563d1a, _0x5019e5, _0x18adea, _0x36f56f) {
-        return layer.close(_0x15f806), _0x1cb07a && _0x22ef36.tipsAndClose(_0x2196a6, _0x57556c), _0x468d5c();
+  callAuthSuccess() {
+    _0x36476b.setGMData("authSuccess", _0x36476b.now());
+  },
+  initBuyAuth() {
+    if (!_0x36476b.pageData.authListnerIndex) {
+      _0x36476b.pageData.authListnerIndex = GM_addValueChangeListener("authSuccess", function (_0x26af89, _0x2e6c60, _0x1d6125, _0x3017f6) {
+        if (_0x3017f6) {
+          layer.close(_0x36476b.pageData.myInfoIndex);
+          layer.close(_0x36476b.pageData.noAuthIndex);
+          layer.open({
+            type: "1",
+            offset: "100px",
+            title: "脚本授权提示",
+            content: "<div style=\"padding:16px;font-size:20px;\">😃授权购买成功，刷新页面后授权生效</div>"
+          });
+        }
+      });
+    }
+    if (!_0x36476b.buyAuthFun) {
+      _0x36476b.buyAuthFun = function () {
+        let _0x546481 = "https://m.zhanyc.cn";
+        _0xe0fc32 && (_0x546481 = "http://localhost:3000");
+        window.open(_0x546481 + "/yh-auth?i=" + baseConfig.project.id + "&t=" + _0x36476b.getGMData("token"));
+      };
+    }
+  },
+  myInfo() {
+    _0x36476b.initBuyAuth();
+    _0x36476b.gmAuthPost("/yh/user/myInfo").then(_0x7da94b => {
+      if (_0xe0fc32) {
+        console.log(_0x7da94b);
+      }
+      let _0x3a8ec0 = "脚本ID：【" + baseConfig.project.id + "】 脚本账号昵称：【" + _0x7da94b.name + "】 脚本账号：【" + _0x7da94b.acc + "】";
+      let _0x58ff40 = "\n        <div class=\"p-10 zfk-container\" style=\"padding: 10px;\">\n        <div class=\"kv\" style=\"text-align: center;color: #ffffff;background: #38a1ff;font-weight: bold;margin: -10px -10px 10px;\">" + (_0x36476b.setting.tjjl || "") + "</div>\n        <div class=\"kv\"><label>脚本ID：</label><span>【" + baseConfig.project.id + "】</span></div>\n        <div class=\"kv\"><label>脚本账号昵称：</label><span>【" + _0x7da94b.name + "】</span></div>\n        <div class=\"kv\"><label>脚本账号：</label><span>【" + _0x7da94b.acc + "】</span></div>\n\n        <div class=\"kv\" style=\"text-align: center;margin: 10px 0 20px;\">\n          <button onclick=\"zfk.buyAuthFun()\" style=\"cursor: pointer;background:#BE2EDD;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">自助购买授权（👍推荐）</button>\n          <button onclick=\"zfk.setClip('" + _0x3a8ec0 + "')\" style=\"cursor: pointer;background:#34495E;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">点这里复制以上信息</button>\n        </div>\n        <div class=\"kv\" style=\"text-align: center;\">\n          <button onclick=\"window.open('https://www.todesk.com/download.html')\" style=\"cursor: pointer;background:#009349;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">下载远程控制软件（需要协助才下载）</button>\n          <button onclick=\"zfk.logout()\" style=\"cursor: pointer;background:#FF6B81;color:#fff;border-radius:4px;padding:2px 8px!important;margin-right:10px;height:30px;border:0;line-height:30px;box-sizing:border-box;vertical-align:middle;font-size:16px;font-weight:700\">退出脚本账号</button>\n        </div>\n\n        </div>\n        ";
+      _0x36476b.pageData.myInfoIndex = layer.open({
+        type: "1",
+        title: "脚本信息",
+        content: _0x58ff40,
+        area: ["460px", "300px"],
+        offset: "100px"
       });
     });
   },
-  "tipsAndClose"(_0xc739fd, _0x452f2c = 5000) {
-    _0x22ef36.confirmRun((_0x452f2c / 1000).toFixed(2) + "秒后关闭当前页面", _0x452f2c).then(_0x4c977b => {
-      if (!_0xc739fd || location.href == _0xc739fd) window.close();
+  tipsLogin(_0x26a40b = "【未登录】脚本需要付费后才可使用。点击[确定]按钮将前往[脚本账号]的注册/登录页面") {
+    layer.open({
+      type: "1",
+      content: "<div style=\"padding:14px;\">" + _0x26a40b + "</div>",
+      title: "使用脚本前请先登录脚本账号！",
+      offset: "100px",
+      btn: ["去登录", "查看授权说明", "关闭"],
+      yes: function (_0x42233e) {
+        layer.close(_0x42233e);
+        _0x36476b.pageData.loginTipsIndex = layer.alert("已经为您打开登录页面，请留意浏览器窗口");
+        _0x36476b.toLogin();
+      },
+      btn2: function (_0xe21317) {
+        window.open("https://doc.zhanyc.cn/pages/auth/");
+        return false;
+      },
+      btn2function(_0xb24489) {
+        layer.close(_0xb24489);
+      }
     });
   },
-  "closeWaitConfrimWin"() {
-    _0x22ef36.setGMData("closeLJTS", _0x22ef36.now());
+  gmAuthPost(_0xbe46a0, _0x111324 = {}, _0x4df7f8 = {
+    showErr: true
+  }) {
+    _0xbe46a0 = _0x36476b.fullUrl(_0xbe46a0);
+    if (_0xe0fc32) {
+      console.log("gmPost", _0xbe46a0);
+    }
+    let _0x4c6d1e = {
+      "Content-Type": "application/json"
+    };
+    if (_0x36476b.getGMData("token", "")) {
+      _0x4c6d1e["X-Access-Token"] = this.getGMData("token", "");
+    }
+    return new Promise((_0x1b8e8b, _0xb4df1) => {
+      GM_xmlhttpRequest({
+        method: "post",
+        url: _0xbe46a0,
+        data: JSON.stringify(_0x111324),
+        headers: _0x4c6d1e,
+        responseType: "json",
+        onload: function (_0x8d5a85) {
+          if (_0xe0fc32) {
+            console.log(_0x8d5a85);
+          }
+          let _0x111324 = _0x8d5a85.response;
+          try {
+            if (typeof _0x111324 == "string") {
+              _0x111324 = JSON.parse(_0x111324);
+            }
+          } finally {}
+          if (_0x111324.message.indexOf("Token失效") != -1) {
+            _0x36476b.tipsLogin();
+            return;
+          }
+          if (_0x111324.code != 200) {
+            if (_0x4df7f8.showErr) {
+              if (_0x111324.message.startsWith("脚本需收费授权使用")) {
+                _0x36476b.initBuyAuth();
+                _0x36476b.pageData.noAuthIndex = layer.open({
+                  type: "1",
+                  content: "<div style=\"padding:14px;\">" + _0x111324.message + "</div>",
+                  icon: 3,
+                  title: "当前学生账号未授权",
+                  offset: "100px",
+                  btn: ["去购买授权", "查看授权信息", "查看帮助"],
+                  yes: function (_0x3b527d) {
+                    _0x36476b.buyAuthFun();
+                  },
+                  btn2: function (_0x37d8d7) {
+                    _0x36476b.myInfo();
+                  },
+                  btn3: function (_0x4cf32c) {
+                    top.open("http://doc.zhanyc.cn/pages/auth/");
+                    return false;
+                  }
+                });
+              } else {
+                layer.alert(_0x111324.message, {
+                  offset: "100px"
+                }, function () {
+                  _0x36476b.myInfo();
+                });
+              }
+            }
+            _0xb4df1(_0x111324);
+          } else {
+            _0x1b8e8b(_0x111324.result);
+          }
+        },
+        onerror: function (_0x1474cc) {
+          if (_0xe0fc32) {
+            console.log(_0x1474cc);
+          }
+          _0xb4df1(_0x1474cc);
+        }
+      });
+    });
   },
-  "getQuestionType"(_0x3a9cbd) {
-    var _0xfa3df7 = "";
-    switch (_0x3a9cbd) {
+  gmAuthDownScore(_0x561db4, _0x32ecd4 = true) {
+    return new Promise((_0x57db37, _0x4fbc22) => {
+      if (_0x36476b.isDZKFMode() || _0x1f5d4f) {
+        return _0x57db37(true);
+      }
+      if (typeof _0x36476b.pageData.downSuccess !== "undefined" && _0x36476b.pageData.downSuccess.includes(_0x561db4) && _0x36476b.pageData.downSuccessUserName == _0x36476b.getUserName()) {
+        return _0x57db37(true);
+      } else {
+        if (typeof _0x36476b.pageData.downError !== "undefined" && _0x36476b.pageData.downError.includes(_0x561db4)) {
+          return _0x4fbc22(false);
+        }
+      }
+      var _0x77586d = _0x36476b.getUserName();
+      if (!_0x77586d) {
+        _0x36476b.toUserNamePage();
+        return;
+      }
+      _0x36476b.gmAuthPost("/yh/price/down", {
+        id: _0x561db4,
+        key: _0x77586d
+      }, {
+        showErr: _0x32ecd4
+      }).then(_0x3c73f8 => {
+        if (_0x36476b.pageData) {
+          if (!_0x36476b.pageData.downSuccess) {
+            _0x36476b.pageData.downSuccess = [];
+          }
+          _0x36476b.pageData.downSuccess.push(_0x561db4);
+          _0x36476b.pageData.downSuccessUserName = _0x77586d;
+        }
+        _0x57db37(true);
+      }, _0x199f28 => {
+        if (!_0x36476b.pageData.downError) {
+          _0x36476b.pageData.downError = [];
+        }
+        _0x36476b.pageData.downError.push(_0x561db4);
+        _0x4fbc22(_0x199f28);
+      });
+    });
+  },
+  isDZKFMode() {
+    let _0x2e8541 = typeof loadFun == "function" && loadFun.toString().includes("var data = res.response;");
+    if (!_0x2e8541) {
+      _0x2e8541 = typeof isDZKF == "boolean" && !!isDZKF;
+    }
+    return _0x2e8541;
+  },
+  alertMsg(_0x47a830, _0x1660b7 = 0) {
+    return layer.open({
+      type: "1",
+      content: "<div style=\"padding:14px;\">" + _0x47a830 + "</div>",
+      title: "脚本提示" + (_0x1660b7 == 0 ? "" : "（" + (_0x1660b7 / 1000).toFixed(2) + "秒后自动关闭本提示}）"),
+      offset: "100px",
+      time: _0x1660b7,
+      btn: "关闭"
+    });
+  },
+  tipsMsg(_0xb0d415, _0x10e195 = 3000) {
+    return layer.msg(_0xb0d415, {
+      offset: "100px",
+      time: _0x10e195
+    });
+  },
+  confirmMsg(_0x357340 = "请确认", _0x17f4e0 = {}) {
+    let _0x1a45ff = {
+      title: "脚本提示",
+      btn: ["确定", "关闭"],
+      fun1(_0x5905cd) {
+        layer.close(_0x5905cd);
+      },
+      fun2() {},
+      fun3() {}
+    };
+    Object.assign(_0x1a45ff, _0x17f4e0);
+    return layer.open({
+      type: "1",
+      content: "<div style=\"padding:14px;\">" + _0x357340 + "</div>",
+      title: _0x17f4e0.title,
+      offset: "100px",
+      btn: _0x1a45ff.btn,
+      yes: _0x1a45ff.fun1,
+      btn2: _0x1a45ff.fun2,
+      btn3: _0x1a45ff.fun3
+    });
+  },
+  async openLjTips(_0x2e9e9 = true, _0x5e0a88 = false, _0x5ef91f = 5000) {
+    return new Promise((_0x485757, _0x2543d9) => {
+      let _0x525fb9 = layer.open({
+        type: 1,
+        title: "请确认",
+        offset: "100px",
+        content: "\n      <div style=\"padding:10px\">\n      <p>已经为你打开下一门课程，如果没有打开窗口，请检查浏览器地址栏左右两侧是否有拦截提示，请选择【永久允许】。如不可见，请刷新下浏览器在3秒提示后再看地址栏左右两侧</p>\n      <p style=\"color:red;\">如下图所示：</p>\n      <img src=\"https://js.zhanyc.cn/img/ljts.jpg\"/>\n      </div>\n      "
+      });
+      let _0x1cd6f0 = _0x5e0a88 ? location.href : "";
+      GM_addValueChangeListener(_0x36476b.getGMKey("closeLJTS"), function (_0x41e159, _0x5da256, _0x24708e, _0x2cd39b) {
+        layer.close(_0x525fb9);
+        _0x2e9e9 && _0x36476b.tipsAndClose(_0x1cd6f0, _0x5ef91f);
+        return _0x485757();
+      });
+    });
+  },
+  tipsAndClose(_0x25e368, _0x377b64 = 5000) {
+    _0x36476b.confirmRun((_0x377b64 / 1000).toFixed(2) + "秒后关闭当前页面", _0x377b64).then(_0x4bceeb => {
+      if (!_0x25e368 || location.href == _0x25e368) {
+        window.close();
+      }
+    });
+  },
+  closeWaitConfrimWin() {
+    _0x36476b.setGMData("closeLJTS", _0x36476b.now());
+  },
+  getQuestionType(_0x5d7a90) {
+    var _0x183beb = "";
+    switch (_0x5d7a90) {
       case "[单选题]":
-        _0xfa3df7 = "1";
+        _0x183beb = "1";
         break;
       case "[判断题]":
-        _0xfa3df7 = "3";
+        _0x183beb = "3";
         break;
     }
-    return _0xfa3df7;
+    return _0x183beb;
   },
-  "checkLogin"() {
-    if (_0x30587c) {
-      _0x22ef36.begin();
+  checkLogin() {
+    if (_0x1f5d4f) {
+      _0x36476b.begin();
       return;
     }
     if (location.href.indexOf("m.zhanyc.cn") != -1) {
       return;
     }
-    _0x22ef36.gmAuthPost("/yh/price/check").then(_0x168c7c => {
-      _0x168c7c && _0x22ef36.begin();
+    _0x36476b.gmAuthPost("/yh/price/check").then(_0x58f001 => {
+      if (_0x58f001) {
+        _0x36476b.begin();
+      }
     });
   },
-  "gmAuthPost"(_0x468b36, _0x1f3cbf = {}, _0x333631 = {
-    "showErr": true
-  }) {
-    _0x468b36 = _0x22ef36.fullUrl(_0x468b36);
-    if (_0x48445f) console.log("gmPost", _0x468b36);
-    let _0x36f708 = {
-      "Content-Type": "application/json"
-    };
-    return _0x22ef36.getGMData("token", "") && (_0x36f708["X-Access-Token"] = this.getGMData("token", "")), new Promise((_0x328df5, _0x37c3b7) => {
-      GM_xmlhttpRequest({
-        "method": "post",
-        "url": _0x468b36,
-        "data": JSON.stringify(_0x1f3cbf),
-        "headers": _0x36f708,
-        "responseType": "json",
-        "onload": function (_0x58f2ba) {
-          if (_0x48445f) console.log(_0x58f2ba);
-          let _0x173d81 = _0x58f2ba.response;
-          try {
-            if (typeof _0x173d81 == "string") _0x173d81 = JSON.parse(_0x173d81);
-          } finally {}
-          if (_0x173d81.message.indexOf("Token失效") != -1) {
-            _0x22ef36.tipsLogin();
-            return;
-          }
-          if (_0x173d81.code != 200) {
-            if (_0x333631.showErr) {
-              if (_0x173d81.message.startsWith("脚本需收费授权使用")) {
-                _0x22ef36.initBuyAuth();
-                _0x22ef36.pageData.noAuthIndex = layer.open({
-                  "type": "1",
-                  "content": "<div style=\"padding:14px;\">" + _0x173d81.message + "</div>",
-                  "icon": 3,
-                  "title": "当前学生账号未授权",
-                  "offset": "100px",
-                  "btn": ["去购买授权", "查看授权信息", "查看帮助"],
-                  "yes": function (_0x3db92e) {
-                    _0x22ef36.buyAuthFun();
-                  },
-                  "btn2": function (_0x1b9b73) {
-                    _0x22ef36.myInfo();
-                  },
-                  "btn3": function (_0x443c4c) {
-                    return top.open("http://doc.zhanyc.cn/pages/auth/"), false;
-                  }
-                });
-              } else layer.alert(_0x173d81.message, {
-                "offset": "100px"
-              }, function () {
-                _0x22ef36.myInfo();
-              });
-            }
-            _0x37c3b7(_0x173d81);
-          } else _0x328df5(_0x173d81.result);
-        },
-        "onerror": function (_0x2f4fe1) {
-          if (_0x48445f) console.log(_0x2f4fe1);
-          _0x37c3b7(_0x2f4fe1);
-        }
-      });
-    });
-  },
-  "hold"() {
+  hold() {
     setInterval(() => {
-      _0x22ef36.gmAuthPost("/yh/price/hold").then(_0xd94868 => {});
-    }, 10 * 60 * 1000);
+      _0x36476b.gmAuthPost("/yh/price/hold").then(_0x396e15 => {});
+    }, 600000);
   },
-  "getConfig"() {
-    let _0xd12ed8 = GM_getValue("config", {}),
-      _0x5945b9 = {};
-    return _0xd12ed8 = Object.assign(_0x5945b9, _0xd12ed8), _0xd12ed8;
+  getConfig() {
+    let _0x232d6c = GM_getValue("config", {});
+    let _0x51722e = {};
+    _0x232d6c = Object.assign(_0x51722e, _0x232d6c);
+    return _0x232d6c;
   },
-  "setConfig"(_0x2d115e, _0x23dacf = "") {
-    console.log("setConfig" + _0x23dacf, JSON.stringify(_0x2d115e));
-    GM_setValue("config", _0x2d115e);
+  setConfig(_0x66aa40, _0x594ed5 = "") {
+    console.log("setConfig" + _0x594ed5, JSON.stringify(_0x66aa40));
+    GM_setValue("config", _0x66aa40);
   },
-  "fullUrl"(_0x765a34, _0x26a3e = "") {
-    if (!_0x26a3e) _0x26a3e = _0x22ef36.url.base;
-    if (!_0x765a34.startsWith("http")) return _0x26a3e + _0x765a34;
-    return _0x765a34;
+  fullUrl(_0x29b38b, _0x346a80 = "") {
+    if (!_0x346a80) {
+      _0x346a80 = _0x36476b.url.base;
+    }
+    if (!_0x29b38b.startsWith("http")) {
+      return _0x346a80 + _0x29b38b;
+    }
+    return _0x29b38b;
   },
-  "getPromiseWithAbort"(_0x50ac4e) {
-    let _0xa15d4d = {},
-      _0x44bd24 = new Promise(function (_0x56dd69, _0x34a31e) {
-        _0xa15d4d.abort = _0x34a31e;
-      });
-    return _0xa15d4d.promise = Promise.race([_0x50ac4e, _0x44bd24]), _0xa15d4d;
+  getPromiseWithAbort(_0x5910f5) {
+    let _0x527566 = {};
+    let _0x5446aa = new Promise(function (_0x5c689e, _0x55b277) {
+      _0x527566.abort = _0x55b277;
+    });
+    _0x527566.promise = Promise.race([_0x5910f5, _0x5446aa]);
+    return _0x527566;
   },
-  "addValueChangeTempate"() {
-    GM_removeValueChangeListener(_0x22ef36.pageData.valueChangeIndex.list);
-    _0x22ef36.pageData.valueChangeIndex.list = GM_addValueChangeListener("zfk_mark_brand", function (_0x3c939d, _0x58e0ce, _0x4434bf, _0x347140) {
+  addValueChangeTempate() {
+    GM_removeValueChangeListener(_0x36476b.pageData.valueChangeIndex.list);
+    _0x36476b.pageData.valueChangeIndex.list = GM_addValueChangeListener("zfk_mark_brand", function (_0x16f957, _0x240ef5, _0x4cb3a1, _0x39a41b) {
       console.log("zfk_mark_brand", arguments);
-      if (_0x4434bf == "") {
+      if (_0x4cb3a1 == "") {
         return;
       }
     });
   },
-  "matchReg"(_0x1b805b, _0x53c605) {},
-  "matchUrl"(_0x494766, _0x369b1e = "like", _0x27c11e = location.href) {
-    let _0x42c915 = false;
-    switch (_0x369b1e) {
+  matchReg(_0x40392f, _0x5c934a) {},
+  matchUrl(_0x364a47, _0x2c1c78 = "like", _0x281ecb = location.href.toLocaleLowerCase()) {
+    let _0x300f84 = false;
+    switch (_0x2c1c78) {
       case "eq":
-        _0x42c915 = _0x494766 == _0x27c11e;
+        _0x300f84 = _0x364a47.toLocaleLowerCase() == _0x281ecb;
         break;
       case "like":
-        _0x42c915 = _0x27c11e.indexOf(_0x494766) != -1;
+        _0x300f84 = _0x281ecb.indexOf(_0x364a47.toLocaleLowerCase()) != -1;
         break;
       case "left":
-        _0x42c915 = _0x27c11e.startsWith(_0x494766);
+        _0x300f84 = _0x281ecb.startsWith(_0x364a47.toLocaleLowerCase());
         break;
       case "right":
-        _0x42c915 = _0x27c11e.endsWith(_0x494766);
+        _0x300f84 = _0x281ecb.endsWith(_0x364a47.toLocaleLowerCase());
         break;
     }
-    return _0x42c915;
+    return _0x300f84;
   },
-  "page_yhwelcome"() {
+  page_yhwelcome() {
     console.log("%c page_yhwelcome", "background:rgb(255,0,0);color:#fff");
-    let _0x299304 = setInterval(() => {
+    let _0x490fcf = setInterval(() => {
       if (location.href.search("yhwelcome") != -1) {
-        clearInterval(_0x299304);
-        var _0x41d531 = JSON.parse(localStorage.getItem("pro__Access-Token")).value;
-        _0x22ef36.setGMData("token", _0x41d531);
-        _0x22ef36.setGMData("login", {
-          "login": true,
-          "time": _0x22ef36.now()
+        clearInterval(_0x490fcf);
+        var _0x3860ed = JSON.parse(localStorage.getItem("pro__Access-Token")).value;
+        _0x36476b.setGMData("token", _0x3860ed);
+        _0x36476b.setGMData("login", {
+          login: true,
+          time: _0x36476b.now()
         });
       }
     }, 500);
   },
-  "page_yhwelcome2"() {
+  page_yhwelcome2() {
     console.log("%c page_yhwelcome", "background:rgb(255,0,0);color:#fff");
-    var _0x251da2 = sessionStorage.getItem("token");
-    _0x22ef36.setGMData("token", _0x251da2);
-    _0x22ef36.setGMData("login", {
-      "login": true,
-      "time": _0x22ef36.now()
+    var _0x14d397 = sessionStorage.getItem("token");
+    _0x36476b.setGMData("token", _0x14d397);
+    _0x36476b.setGMData("login", {
+      login: true,
+      time: _0x36476b.now()
     });
   },
-  "gmGet"(_0x3c6a5d, _0x542907) {
-    console.log("gmGet", _0x3c6a5d);
-    if (_0x3c6a5d.indexOf("?") != -1) {
-      for (key in _0x542907) {
-        _0x3c6a5d += "&" + key + "=" + _0x542907[key];
+  gmGet(_0x592958, _0x25a0f3) {
+    console.log("gmGet", _0x592958);
+    if (_0x592958.indexOf("?") != -1) {
+      for (key in _0x25a0f3) {
+        _0x592958 += "&" + key + "=" + _0x25a0f3[key];
       }
     } else {
-      let _0x5af843 = true;
-      for (key in _0x542907) {
-        _0x3c6a5d += (_0x5af843 ? "?" : "&") + (key + "=" + _0x542907[key]);
-        _0x5af843 = false;
+      let _0x504a01 = true;
+      for (key in _0x25a0f3) {
+        _0x592958 += (_0x504a01 ? "?" : "&") + (key + "=" + _0x25a0f3[key]);
+        _0x504a01 = false;
       }
     }
-    return new Promise((_0x1e68f5, _0x4a42a8) => {
+    return new Promise((_0x5337b8, _0x32962e) => {
       GM_xmlhttpRequest({
-        "method": "get",
-        "url": _0x3c6a5d,
-        "data": _0x542907,
-        "headers": {},
-        "responseType": "json",
-        "onload": function (_0x2379f7) {
-          let _0x42cc84 = _0x2379f7.response;
-          console.log(_0x42cc84);
-          _0x1e68f5(_0x42cc84);
+        method: "get",
+        url: _0x592958,
+        data: _0x25a0f3,
+        headers: {},
+        responseType: "json",
+        onload: function (_0x53a895) {
+          let _0x25a0f3 = _0x53a895.response;
+          console.log(_0x25a0f3);
+          _0x5337b8(_0x25a0f3);
         },
-        "onerror": function (_0x1bfbbc) {
-          console.log(_0x1bfbbc);
-          _0x4a42a8(_0x1bfbbc);
+        onerror: function (_0x5a86b7) {
+          console.log(_0x5a86b7);
+          _0x32962e(_0x5a86b7);
         }
       });
     });
   },
-  "parseQueryString"(_0x135553) {
-    _0x135553 = !_0x135553 ? window.location.href : _0x135553;
-    if (_0x135553.indexOf("?") === -1) return {};
-    let _0x25d389 = _0x135553[0] === "?" ? _0x135553.substr(1) : _0x135553.substring(_0x135553.lastIndexOf("?") + 1);
-    if (_0x25d389 === "") return {};
-    _0x25d389 = _0x25d389.split("&");
-    let _0x4e7c0e = {};
-    for (let _0x2dbf62 = 0; _0x2dbf62 < _0x25d389.length; _0x2dbf62++) {
-      let _0x5f2bb7 = _0x25d389[_0x2dbf62].split("=");
-      _0x4e7c0e[decodeURIComponent(_0x5f2bb7[0])] = decodeURIComponent(_0x5f2bb7[1] || "");
+  parseQueryString(_0x159dbd) {
+    _0x159dbd = !_0x159dbd ? window.location.href : _0x159dbd;
+    if (_0x159dbd.indexOf("?") === -1) {
+      return {};
     }
-    return _0x4e7c0e;
+    let _0x32c439 = _0x159dbd[0] === "?" ? _0x159dbd.substr(1) : _0x159dbd.substring(_0x159dbd.lastIndexOf("?") + 1);
+    if (_0x32c439 === "") {
+      return {};
+    }
+    _0x32c439 = _0x32c439.split("&");
+    let _0x71d18e = {};
+    for (let _0xb19e66 = 0; _0xb19e66 < _0x32c439.length; _0xb19e66++) {
+      let _0x5dc4e0 = _0x32c439[_0xb19e66].split("=");
+      _0x71d18e[decodeURIComponent(_0x5dc4e0[0])] = decodeURIComponent(_0x5dc4e0[1] || "");
+    }
+    return _0x71d18e;
   },
-  "gmPost"(_0x43f5d9, _0x551b7a) {
-    return console.log("gmPost", _0x43f5d9), _0x43f5d9 = _0x22ef36.fullUrl(_0x43f5d9), new Promise((_0x27f907, _0x12aaa3) => {
+  gmPost(_0x34dcf9, _0x42fe06) {
+    console.log("gmPost", _0x34dcf9);
+    _0x34dcf9 = _0x36476b.fullUrl(_0x34dcf9);
+    return new Promise((_0x29a721, _0x2fb0d5) => {
       GM_xmlhttpRequest({
-        "method": "post",
-        "url": _0x43f5d9,
-        "data": JSON.stringify(_0x551b7a),
-        "headers": {
+        method: "post",
+        url: _0x34dcf9,
+        data: JSON.stringify(_0x42fe06),
+        headers: {
           "Content-Type": "application/json"
         },
-        "responseType": "json",
-        "onload": function (_0x4f025d) {
-          let _0x478bd9 = _0x4f025d.response;
-          console.log(_0x478bd9);
-          _0x27f907(_0x478bd9);
+        responseType: "json",
+        onload: function (_0x1aba21) {
+          let _0x42fe06 = _0x1aba21.response;
+          console.log(_0x42fe06);
+          _0x29a721(_0x42fe06);
         },
-        "onerror": function (_0x29c769) {
-          console.log(_0x29c769);
-          _0x12aaa3(_0x29c769);
+        onerror: function (_0x2fe3e1) {
+          console.log(_0x2fe3e1);
+          _0x2fb0d5(_0x2fe3e1);
         }
       });
     });
   },
-  "triggerInputEvent"() {
-    let _0xc83588 = document.createEvent("HTMLEvents");
-    _0xc83588.initEvent("input", true, true);
-    $jq("#TeamName").val("团队1233123").get(0).dispatchEvent(_0xc83588);
+  triggerInputEvent() {
+    let _0x5a3d75 = document.createEvent("HTMLEvents");
+    _0x5a3d75.initEvent("input", true, true);
+    $jq("#TeamName").val("团队1233123").get(0).dispatchEvent(_0x5a3d75);
   },
-  "addJS"(_0xec241c) {
-    let _0x1b2f1b = document.createElement("script");
-    _0x1b2f1b.setAttribute("type", "text/javascript");
-    _0x1b2f1b.setAttribute("src", _0xec241c);
-    document.body.insertBefore(_0x1b2f1b, document.body.lastChild);
+  addJS(_0x4510d8) {
+    let _0x3c9e9c = document.createElement("script");
+    _0x3c9e9c.setAttribute("type", "text/javascript");
+    _0x3c9e9c.setAttribute("src", _0x4510d8);
+    document.body.insertBefore(_0x3c9e9c, document.body.lastChild);
   },
-  "AddCss"(_0x448b0a) {
-    var _0x3f2c02 = document.getElementsByTagName("head")[0],
-      _0x278c12 = document.createElement("link");
-    _0x278c12.rel = "stylesheet";
-    _0x278c12.href = _0x448b0a;
-    _0x3f2c02.appendChild(_0x278c12);
+  AddCss(_0xba4ddc) {
+    var _0x522fe1 = document.getElementsByTagName("head")[0];
+    var _0x8fada1 = document.createElement("link");
+    _0x8fada1.rel = "stylesheet";
+    _0x8fada1.href = _0xba4ddc;
+    _0x522fe1.appendChild(_0x8fada1);
   },
-  "logResult"() {
+  logResult() {
     console.log(GM_getValue("zfk_jl_result", []));
   },
-  "getGMData"(_0x31adb5, _0x54dfb0) {
-    return GM_getValue(_0x31adb5, _0x54dfb0);
+  getGMData(_0x5b264a, _0x2fa008) {
+    return GM_getValue(_0x5b264a, _0x2fa008);
   },
-  "setGMData"(_0x2f3501, _0x432c64) {
-    return GM_setValue(_0x2f3501, _0x432c64);
+  setGMData(_0xbc9f5c, _0x3ee843) {
+    return GM_setValue(_0xbc9f5c, _0x3ee843);
   },
-  "delGMData"(_0x24f4a2, _0x2f960f) {
-    return GM_deleteValue(_0x24f4a2);
+  delGMData(_0x2b7f27, _0x19134d) {
+    return GM_deleteValue(_0x2b7f27);
   },
-  "setPageData"() {
+  setPageData() {
     this.pageData.url = location.href;
   },
-  "closeConfig"() {
+  closeConfig() {
     layer.closeAll();
   },
-  "HTMLEncode"(_0x2d06c2) {
-    var _0x25e6c8 = document.createElement("div");
-    _0x25e6c8.textContent != null ? _0x25e6c8.textContent = _0x2d06c2 : _0x25e6c8.innerText = _0x2d06c2;
-    var _0xb27751 = _0x25e6c8.innerHTML;
-    return _0x25e6c8 = null, _0xb27751;
+  HTMLEncode(_0x391023) {
+    var _0x50a7af = document.createElement("div");
+    _0x50a7af.textContent != null ? _0x50a7af.textContent = _0x391023 : _0x50a7af.innerText = _0x391023;
+    var _0x3f2c3f = _0x50a7af.innerHTML;
+    _0x50a7af = null;
+    return _0x3f2c3f;
   },
-  "HTMLDecode"(_0x418d65) {
-    if (!_0x418d65) return "";
-    if (_0x418d65.length > 2 && _0x418d65.substr(0, 1) == "<" && _0x418d65.substr(_0x418d65.length - 1, 1) == ">") {
-      return _0x418d65;
+  HTMLDecode(_0x205275) {
+    if (!_0x205275) {
+      return "";
+    }
+    if (_0x205275.length > 2 && _0x205275.substr(0, 1) == "<" && _0x205275.substr(_0x205275.length - 1, 1) == ">") {
+      return _0x205275;
     } else {
-      var _0x2067be = document.createElement("div");
-      _0x2067be.innerHTML = _0x418d65;
-      var _0x34ed10 = _0x2067be.innerText || _0x2067be.textContent;
-      _0x2067be = null;
-      return _0x34ed10;
+      var _0x39b3d6 = document.createElement("div");
+      _0x39b3d6.innerHTML = _0x205275;
+      var _0x1a65c3 = _0x39b3d6.innerText || _0x39b3d6.textContent;
+      _0x39b3d6 = null;
+      return _0x1a65c3;
     }
   },
-  "isRichText"(_0x38a7c1) {
-    if (!_0x38a7c1) return false;
-    var _0x321025 = document.createElement("div");
-    _0x321025.innerHTML = _0x38a7c1;
-    var _0x2e117c = _0x321025.innerText.length != _0x38a7c1.length;
-    return _0x321025 = null, _0x2e117c;
+  isRichText(_0x11286b) {
+    if (!_0x11286b) {
+      return false;
+    }
+    var _0x4e89ca = document.createElement("div");
+    _0x4e89ca.innerHTML = _0x11286b;
+    var _0x313de1 = _0x4e89ca.innerText.length != _0x11286b.length;
+    _0x4e89ca = null;
+    return _0x313de1;
   },
-  "getSimpleText"(_0x1b4533) {
-    if (!_0x1b4533) return "";
-    var _0x5b0239 = this.HTMLDecode(_0x1b4533),
-      _0x5afeed = document.createElement("div");
-    _0x5afeed.innerHTML = _0x5b0239;
-    var _0x12cfa5 = _0x5afeed.innerText || _0x5afeed.textContent;
-    return _0x5afeed = null, _0x12cfa5;
+  getSimpleText(_0x148a7a) {
+    if (!_0x148a7a) {
+      return "";
+    }
+    var _0x279b0f = this.HTMLDecode(_0x148a7a);
+    var _0x5639f5 = document.createElement("div");
+    _0x5639f5.innerHTML = _0x279b0f;
+    var _0x1e7d9a = _0x5639f5.innerText || _0x5639f5.textContent;
+    _0x5639f5 = null;
+    return _0x1e7d9a;
   },
-  "now"() {
+  now() {
     return new Date().getTime();
   },
-  "downloadTxt"(_0x5ae0f5, _0x3fd46e) {
-    var _0x3e8bfc = document.createElement("a");
-    _0x3e8bfc.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(_0x3fd46e));
-    _0x3e8bfc.setAttribute("download", _0x5ae0f5);
-    _0x3e8bfc.style.display = "none";
-    document.body.appendChild(_0x3e8bfc);
-    _0x3e8bfc.click();
-    document.body.removeChild(_0x3e8bfc);
+  downloadTxt(_0xa0f4e8, _0x436609) {
+    var _0x388195 = document.createElement("a");
+    _0x388195.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(_0x436609));
+    _0x388195.setAttribute("download", _0xa0f4e8);
+    _0x388195.style.display = "none";
+    document.body.appendChild(_0x388195);
+    _0x388195.click();
+    document.body.removeChild(_0x388195);
   },
-  "dateFormat"(_0x48f359 = new Date(), _0x11e37a = "yyyy-MM-dd HH:mm") {
-    let _0x485a30;
-    if (typeof _0x48f359 === "number") _0x48f359 = new Date(_0x48f359);
-    const _0x5ba45b = {
-      "y+": _0x48f359.getFullYear().toString(),
-      "M+": (_0x48f359.getMonth() + 1).toString(),
-      "d+": _0x48f359.getDate().toString(),
-      "H+": _0x48f359.getHours().toString(),
-      "m+": _0x48f359.getMinutes().toString(),
-      "s+": _0x48f359.getSeconds().toString()
-    };
-    for (let _0xf5f70 in _0x5ba45b) {
-      _0x485a30 = new RegExp("(" + _0xf5f70 + ")").exec(_0x11e37a);
-      _0x485a30 && (_0x11e37a = _0x11e37a.replace(_0x485a30[1], _0x485a30[1].length == 1 ? _0x5ba45b[_0xf5f70] : _0x5ba45b[_0xf5f70].padStart(_0x485a30[1].length, "0")));
+  dateFormat(_0x517f53 = new Date(), _0x169840 = "yyyy-MM-dd HH:mm") {
+    let _0x2ed860;
+    if (typeof _0x517f53 === "number") {
+      _0x517f53 = new Date(_0x517f53);
     }
-    return _0x11e37a;
+    const _0x2b8ecb = {
+      "y+": _0x517f53.getFullYear().toString(),
+      "M+": (_0x517f53.getMonth() + 1).toString(),
+      "d+": _0x517f53.getDate().toString(),
+      "H+": _0x517f53.getHours().toString(),
+      "m+": _0x517f53.getMinutes().toString(),
+      "s+": _0x517f53.getSeconds().toString()
+    };
+    for (let _0x15cf22 in _0x2b8ecb) {
+      _0x2ed860 = new RegExp("(" + _0x15cf22 + ")").exec(_0x169840);
+      if (_0x2ed860) {
+        _0x169840 = _0x169840.replace(_0x2ed860[1], _0x2ed860[1].length == 1 ? _0x2b8ecb[_0x15cf22] : _0x2b8ecb[_0x15cf22].padStart(_0x2ed860[1].length, "0"));
+      }
+    }
+    return _0x169840;
   }
 });
-_0x22ef36.setGMData("version", _0x22ef36.setting.version.version);
-_0x22ef36.init();
-unsafeWindow.zfk = _0x22ef36;
+_0x36476b.setGMData("version", _0x36476b.setting.version.version);
+_0x36476b.init();
+unsafeWindow.zfk = _0x36476b;
+(function (_0x434c7d, _0x4e1ab9, _0xeef93a) {
+  var _0x90eec9 = function () {
+    var _0x392e1c = true;
+    return function (_0xb5082, _0x4f0711) {
+      var _0x403089 = _0x392e1c ? function () {
+        if (_0x4f0711) {
+          var _0x70f70a = _0x4f0711.apply(_0xb5082, arguments);
+          _0x4f0711 = null;
+          return _0x70f70a;
+        }
+      } : function () {};
+      _0x392e1c = false;
+      return _0x403089;
+    };
+  }();
+  var _0x4ecbce = _0x90eec9(this, function () {
+    var _0x2d1221 = function () {
+        return "dev";
+      },
+      _0x259552 = function () {
+        return "window";
+      };
+    var _0x44801f = function () {
+      var _0xb28bc8 = new RegExp("\\w+ *\\(\\) *{\\w+ *['|\"].+['|\"];? *}");
+      return !_0xb28bc8.test(_0x2d1221.toString());
+    };
+    var _0xbaaeb9 = function () {
+      var _0x392da9 = new RegExp("(\\\\[x|u](\\w){2,4})+");
+      return _0x392da9.test(_0x259552.toString());
+    };
+    var _0x43f780 = function (_0x14a554) {
+      var _0x1bb0c3 = ~-1 >> NaN;
+      if (_0x14a554.indexOf("i" === _0x1bb0c3)) {
+        _0x12cde2(_0x14a554);
+      }
+    };
+    var _0x12cde2 = function (_0x32fa1a) {
+      var _0x26ca01 = ~-4 >> NaN;
+      if (_0x32fa1a.indexOf((true + "")[3]) !== _0x26ca01) {
+        _0x43f780(_0x32fa1a);
+      }
+    };
+    if (!_0x44801f()) {
+      if (!_0xbaaeb9()) {
+        _0x43f780("indеxOf");
+      } else {
+        _0x43f780("indexOf");
+      }
+    } else {
+      _0x43f780("indеxOf");
+    }
+  });
+  _0x4ecbce();
+  _0xeef93a = "al";
+  try {
+    _0xeef93a += "ert";
+    _0x4e1ab9 = encode_version;
+    if (!(typeof _0x4e1ab9 !== "undefined" && _0x4e1ab9 === "jsjiami.com.v5")) {
+      _0x434c7d[_0xeef93a]("删除版本号，js会定期弹窗，还请支持我们的工作");
+    }
+  } catch (_0x1daaf8) {
+    _0x434c7d[_0xeef93a]("删除版本号，js会定期弹窗");
+  }
+})(window);
+encode_version = "jsjiami.com.v5";
